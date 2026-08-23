@@ -12,7 +12,7 @@ facet coverage of what the index returned -- the same coverage metric
 as RQ1, so cost and correctness are read off the same run.
 """
 from pathlib import Path as _P
-_ROOT = _P(__file__).resolve().parents[2]
+_ROOT = _P(__file__).resolve().parent.parent.parent
 import argparse, sys, json, statistics, time
 import os
 from pathlib import Path
@@ -24,7 +24,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from quiet import require_quiet
 import psycopg2
 
-ROOT = Path(str(_ROOT / "experiments"))
+ROOT = Path(str(_ROOT / "experiments") + "")
 OUT = ROOT / "rq2_cost"
 
 ap = argparse.ArgumentParser()

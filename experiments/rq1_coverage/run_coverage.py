@@ -25,7 +25,7 @@ Query set: review titles sampled deterministically from the corpus
 (genuine user-written phrases), >=4 words, deduped.
 """
 from pathlib import Path as _P
-_ROOT = _P(__file__).resolve().parents[2]
+_ROOT = _P(__file__).resolve().parent.parent.parent
 import argparse, json, time
 from pathlib import Path
 
@@ -34,7 +34,7 @@ import pandas as pd
 import torch
 from scipy.stats import spearmanr
 
-ROOT = Path(str(_ROOT / "experiments"))
+ROOT = Path(str(_ROOT / "experiments") + "")
 OUT = ROOT / "rq1_coverage"
 
 ap = argparse.ArgumentParser()

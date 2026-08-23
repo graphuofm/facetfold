@@ -9,7 +9,7 @@ _ROOT = _P(__file__).resolve().parent.parent
 import json
 from pathlib import Path
 
-S = json.load(open("" + str(_ROOT / "experiments") + "/rq1_coverage/scaling.json"))
+S = json.load(open(str(_ROOT / "experiments") + "/rq1_coverage/scaling.json"))
 NICE = {"amazon": "Amazon", "stackexchange": "StackExchange", "imdb": "IMDb"}
 KS = [100, 1000, 10000]
 rows = []
@@ -48,5 +48,5 @@ corpus & sim & unif & gap & sim & unif & gap & sim & unif & gap \\\\
 \\end{{tabular}}
 \\end{{table}}
 """
-(_ROOT / "tab_concentration.tex").write_text(tex)
+Path(str(_ROOT) + "/tab_concentration.tex").write_text(tex)
 print("wrote tab_concentration.tex")

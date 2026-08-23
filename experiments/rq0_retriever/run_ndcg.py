@@ -15,7 +15,7 @@ Gain mapping is the one used by the benchmark: Exact 1.0,
 Substitute 0.1, Complement 0.01, Irrelevant 0.0.
 """
 from pathlib import Path as _P
-_ROOT = _P(__file__).resolve().parents[2]
+_ROOT = _P(__file__).resolve().parent.parent.parent
 import argparse, json, time
 from collections import defaultdict
 from pathlib import Path
@@ -24,7 +24,7 @@ import numpy as np
 from datasets import load_dataset
 from sentence_transformers import SentenceTransformer
 
-OUT = Path("" + str(_ROOT / "experiments") + "/rq0_retriever")
+OUT = Path(str(_ROOT / "experiments") + "/rq0_retriever")
 GAIN = {"Exact": 1.0, "Substitute": 0.1, "Complement": 0.01, "Irrelevant": 0.0}
 
 ap = argparse.ArgumentParser()

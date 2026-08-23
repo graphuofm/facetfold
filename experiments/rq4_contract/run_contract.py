@@ -16,7 +16,7 @@ realised maximum error, whether the promise held, facet coverage, and
 -- for the same k -- what plain top-k would have returned.
 """
 from pathlib import Path as _P
-_ROOT = _P(__file__).resolve().parents[2]
+_ROOT = _P(__file__).resolve().parent.parent.parent
 import argparse, json, statistics, time
 from pathlib import Path
 
@@ -24,7 +24,7 @@ import numpy as np
 import pandas as pd
 from bruce import QuerySession
 
-ROOT = Path(str(_ROOT / "experiments"))
+ROOT = Path(str(_ROOT / "experiments") + "")
 OUT = ROOT / "rq4_contract"
 
 ap = argparse.ArgumentParser()

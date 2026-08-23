@@ -8,3 +8,5 @@ target/
 # pre-push hygiene tool: names the identifiers it looks for, so it
 # must not be published alongside an anonymised artifact
 check_anonymity.sh
+# local sync tool: names the author's working directory
+sync_from_paper.sh

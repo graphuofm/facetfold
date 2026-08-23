@@ -20,7 +20,8 @@ At each selectivity we report, for the same queries:
 The conclusion this can support is about the tested engine, index and
 corpus. It is reported as such.
 """
-import argparse, json, os, statistics, sys, time
+import argparse, json, statistics, sys, time
+import os
 from pathlib import Path
 
 import numpy as np

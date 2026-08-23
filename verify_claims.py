@@ -86,6 +86,28 @@ n_fac_am = load("rq1_coverage/results_amazon.json")["n_facets_admitted"]
 check("amazon facets answered at k=100", 10,
       cov["amazon"][100] * n_fac_am, 0.06)
 
+# ---- top-facet agreement, and the separable subset it is over ----
+# A sentence here once mixed two result files with different query sets
+# and temperature grids, and quoted a range that matched neither. Both
+# the range and the denominators are pinned to one source now.
+agree, nsep = [], {}
+for c in ("amazon", "stackexchange", "imdb"):
+    r = load(f"rq1_coverage/results_{c}.json")
+    v = [x for x in r["results"] if x["eps"] == 0.05]
+    agree += [x["top1_agree_separable"] for x in v]
+    nsep[c] = {x["n_separable"] for x in v}
+    checks += 1
+    if len(nsep[c]) != 1:
+        fails.append(f"{c}: n_separable varies within one temperature {nsep[c]}")
+check("lowest top-facet agreement (Amazon)", 0.058,
+      min(x["top1_agree_separable"] for x in
+          load("rq1_coverage/results_amazon.json")["results"] if x["eps"] == 0.05), 0.05)
+check("lowest top-facet agreement (StackExchange)", 0.10,
+      min(x["top1_agree_separable"] for x in
+          load("rq1_coverage/results_stackexchange.json")["results"] if x["eps"] == 0.05), 0.05)
+for c, want in (("amazon", 121), ("stackexchange", 200), ("imdb", 182)):
+    check(f"{c} separable queries", want, nsep[c].pop(), 0.001)
+
 # ---- concentration ----
 sc = load("rq1_coverage/scaling.json")
 am = {p["k"]: p for p in sc["corpora"]["amazon"]["points"]}
@@ -139,6 +161,10 @@ for c in ("amazon", "stackexchange", "imdb"):
     d = d[~d.declined]
     kr.append((c, d.groupby("sample").k_ratio.median().to_dict()))
 
+npairs = sum(load(f"rq4_contract/results2_{c}.json")["n_queries"]
+             * len(load(f"rq4_contract/results2_{c}.json")["main"])
+             for c in ("imdb", "amazon", "stackexchange"))
+check("(query, budget) pairs the contract held on", 2400, npairs, 0.001)
 check("declined rate low", 0.26, min(declined), 0.05)
 check("declined rate high", 0.84, max(declined), 0.05)
 check("facets repaired low", 0.001, min(repaired), 0.60)
@@ -332,6 +358,11 @@ in_text("709.78")
 in_text("24 cores")
 in_text("rather than running its system")
 in_text("$1/\\sum_i p_i^2$")
+in_text("121, 200 and 182 of 200")
+for stale in ("8--24", "121 to\n197"):
+    checks += 1
+    if HAVE_TEXT and stale in TXT:
+        fails.append(f"stale top-facet claim still present: {stale!r}")
 # the stale figures this script was extended to catch
 for stale in ("7 of 28", "1.2M-review", "17--26", "32-core",
               "exact at every temperature", "beyond $10^{300}$",

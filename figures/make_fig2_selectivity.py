@@ -35,7 +35,7 @@ d = json.load(open(EXP / "selectivity_imdb.json"))
 R = sorted(d["results"], key=lambda r: r["target_selectivity"])
 sel = [r["target_selectivity"] * 100 for r in R]
 
-fig, ax = plt.subplots(1, 2, figsize=(7.0, 2.5))
+fig, ax = plt.subplots(1, 2, figsize=(3.4, 2.2))
 
 a = ax[0]
 a.plot(sel, [r["ann_fill"] * 100 for r in R], "o-", color="#c44e52",
@@ -49,7 +49,7 @@ a.set_xlabel("predicate selectivity (% of rows admitted)")
 a.set_ylabel("percent")
 a.set_ylim(-3, 105)
 a.set_title("(a) what the index returns", fontsize=9)
-a.legend(fontsize=6.5, frameon=False, loc="center right")
+a.legend(fontsize=5.4, frameon=False, loc="center right")
 a.grid(alpha=0.25)
 
 b = ax[1]
@@ -64,7 +64,7 @@ b.set_yscale("log")
 b.set_xlabel("predicate selectivity (% of rows admitted)")
 b.set_ylabel("latency (ms)")
 b.set_title("(b) what it costs", fontsize=9)
-b.legend(fontsize=6.5, frameon=False, loc="upper left")
+b.legend(fontsize=5.4, frameon=False, loc="upper left")
 b.grid(alpha=0.25, which="both")
 
 for x in ax:

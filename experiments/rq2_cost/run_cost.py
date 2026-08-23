@@ -19,7 +19,7 @@ Correctness is checked against a max-anchored float64 reference on
 every run, so a latency number is never reported for a wrong answer.
 """
 from pathlib import Path as _P
-_ROOT = _P(__file__).resolve().parents[2]
+_ROOT = _P(__file__).resolve().parent.parent.parent
 import argparse, sys, json, statistics, time
 from pathlib import Path
 
@@ -30,7 +30,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from quiet import require_quiet
 from bruce import QuerySession
 
-ROOT = Path(str(_ROOT / "experiments"))
+ROOT = Path(str(_ROOT / "experiments") + "")
 OUT = ROOT / "rq2_cost"
 
 ap = argparse.ArgumentParser()
