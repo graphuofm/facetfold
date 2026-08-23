@@ -68,11 +68,8 @@ public sources. See `REPRODUCE.md`.
 
 This repository is meant to be readable by reviewers while the paper is
 under double-blind review, so it carries no author name, institutional
-email, home directory, or cluster name, and its commit metadata is
-neutral. `./check_anonymity.sh` re-checks all of that over every tracked
-file and exits non-zero if anything slips back in; the `engine/` tree is
-copied from a working repository that is *not* anonymous, so run it
-before every push.
+email, home directory, cluster name, or link to the account hosting it,
+and its commit metadata is neutral.
 
 ## Note on naming
 

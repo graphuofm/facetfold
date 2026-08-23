@@ -4,3 +4,7 @@ experiments/corpora/*/*.npy
 *.log
 __pycache__/
 target/
+
+# pre-push hygiene tool: names the identifiers it looks for, so it
+# must not be published alongside an anonymised artifact
+check_anonymity.sh
