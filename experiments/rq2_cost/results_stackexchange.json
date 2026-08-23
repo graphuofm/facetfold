@@ -1,0 +1,62 @@
+{
+  "machine_conditions": {
+    "cpu_busy_fraction": 0.004,
+    "gpu_utilisation_pct": 0,
+    "load_average_1min": 8.8,
+    "thresholds": {
+      "max_cpu_busy": 0.15,
+      "max_gpu": 20
+    },
+    "note": "load average is recorded for information only; the gate is instantaneous CPU and GPU use"
+  },
+  "corpus": "stackexchange",
+  "corpus_dir": "stackexchange",
+  "n_rows": 1200000,
+  "n_admitted": 499708,
+  "n_facets": 150,
+  "dim": 384,
+  "eps": 0.05,
+  "predicate": "filter_num >= 3",
+  "n_queries": 20,
+  "reps": 3,
+  "load_seconds": 1.81,
+  "attach_seconds": {
+    "attach_f64_s": 1.31,
+    "attach_f32_s": 0.63
+  },
+  "latency_ms": {
+    "exact_f64_ms": {
+      "median": 38.68335299193859,
+      "p90": 41.12750366330147
+    },
+    "exact_f32_ms": {
+      "median": 20.34222148358822,
+      "p90": 20.71560062468052
+    },
+    "topk100_ms": {
+      "median": 26.016931980848312,
+      "p90": 30.885066837072372
+    },
+    "topk1000_ms": {
+      "median": 25.98591335117817,
+      "p90": 32.85703361034395
+    },
+    "topk10000_ms": {
+      "median": 26.30222775042057,
+      "p90": 27.45172455906868
+    }
+  },
+  "correctness": {
+    "exact_f64_relerr": {
+      "max_rel_err": 2.188553268371267e-14
+    },
+    "exact_f32_relerr": {
+      "max_rel_err": 8.654685307767982e-07
+    }
+  },
+  "facets_answered": {
+    "exact_f64_facets": 150.0,
+    "exact_f32_facets": 150.0
+  },
+  "note": "top-k is timed on the same in-memory scores and layout as the exact path, so the comparison isolates the aggregation strategy, not the storage stack; an index would reduce its scan cost and is measured separately"
+}

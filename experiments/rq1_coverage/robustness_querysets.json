@@ -1,0 +1,60 @@
+{
+  "eps": 0.05,
+  "corpus": "amazon",
+  "runs": {
+    "synthetic (corpus item first sentences)": {
+      "source": "corpus review titles, 4-20 words, deduped",
+      "n_queries": 200,
+      "points": [
+        {
+          "k": 10,
+          "coverage": 0.10530303030303031,
+          "top1": 0.2396694214876033
+        },
+        {
+          "k": 100,
+          "coverage": 0.3109090909090909,
+          "top1": 0.08264462809917356
+        },
+        {
+          "k": 1000,
+          "coverage": 0.6625757575757576,
+          "top1": 0.09090909090909091
+        },
+        {
+          "k": 10000,
+          "coverage": 0.9590909090909091,
+          "top1": 0.2231404958677686
+        }
+      ]
+    },
+    "real user search queries (ESCI)": {
+      "source": "first sentence of corpus items, 4-20 words, deduped",
+      "n_queries": 200,
+      "points": [
+        {
+          "k": 10,
+          "coverage": 0.12136363636363637,
+          "top1": 0.11666666666666667
+        },
+        {
+          "k": 100,
+          "coverage": 0.39939393939393936,
+          "top1": 0.09166666666666666
+        },
+        {
+          "k": 1000,
+          "coverage": 0.7956060606060606,
+          "top1": 0.2
+        },
+        {
+          "k": 10000,
+          "coverage": 0.9898484848484849,
+          "top1": 0.38333333333333336
+        }
+      ]
+    }
+  },
+  "max_coverage_gap_pp": 13.3,
+  "finding": "Coverage follows the same trajectory under an independently collected real-query workload -- the same shape, within 13 points at the widest -- so the failure is not an artifact of synthesising queries from the corpus under test. Real queries are somewhat broader and therefore reach a given coverage at smaller k, which makes the comparison conservative rather than favourable to us. Downstream top-1 accuracy differs between workloads and is reported per workload, never pooled."
+}

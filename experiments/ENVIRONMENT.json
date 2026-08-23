@@ -1,0 +1,17 @@
+{
+  "cpu": "13th Gen Intel(R) Core(TM) i9-13900K",
+  "cores": "32",
+  "ram_gb": 65.5,
+  "gpu": "NVIDIA RTX A5000",
+  "os": "Linux Ubuntu 22.04.5 LTS",
+  "kernel": "6.5.0-1027-oem",
+  "python": "3.10.12",
+  "rust": "rustc 1.95.0 (59807616e 2026-04-14)",
+  "numpy": "2.2.6",
+  "pandas": "2.3.3",
+  "torch": "2.7.1+cu126",
+  "sentence_transformers": "5.5.1",
+  "duckdb": "1.5.3",
+  "postgres": "18.4",
+  "pgvector": "0.8.3"
+}

@@ -1,0 +1,25 @@
+{
+  "benchmark": "ESCI / KDD Cup 2022 Shopping Queries (us locale)",
+  "task": "rank the judged products of each query by embedding similarity",
+  "gain_mapping": {
+    "Exact": 1.0,
+    "Substitute": 0.1,
+    "Complement": 0.01,
+    "Irrelevant": 0.0
+  },
+  "n_queries": 300,
+  "products_per_query": 23.19333333333333,
+  "results": {
+    "sentence-transformers/all-MiniLM-L6-v2": {
+      "ndcg@10": 0.7385646155871528,
+      "ndcg@50": 0.8120547918104613,
+      "n_queries": 300
+    },
+    "sentence-transformers/all-mpnet-base-v2": {
+      "ndcg@10": 0.7332928882863657,
+      "ndcg@50": 0.8107220930357462,
+      "n_queries": 300
+    }
+  },
+  "purpose": "control for RQ1: rules out the rival explanation that facet concentration is an artifact of a weak retriever"
+}

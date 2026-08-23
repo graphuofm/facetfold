@@ -1,0 +1,152 @@
+{
+  "eps": 0.05,
+  "retracted_claim": "coverage collapses onto one curve against k/N -- refuted by the third corpus; see module docstring",
+  "reference_model": "expected coverage under uniform random retrieval: mean_f [1 - (1 - n_f/N)^k]",
+  "corpora": {
+    "amazon": {
+      "N": 1159825,
+      "n_facets": 33,
+      "facet_size_min": 2862,
+      "facet_size_median": 38728,
+      "facet_size_max": 47463,
+      "facet_skew": 16.58385744234801,
+      "gt_spread_median": 0.8444178769657176,
+      "frac_separable": 0.505,
+      "points": [
+        {
+          "k": 10,
+          "frac": 8.62199038648072e-06,
+          "coverage": 0.10363636363636364,
+          "uniform_reference": 0.26211503879266207,
+          "concentration_gap_pp": 15.847867515629844,
+          "top1": 0.2975206611570248,
+          "spearman": 0.08442299356606231
+        },
+        {
+          "k": 100,
+          "frac": 8.621990386480719e-05,
+          "coverage": 0.29833333333333334,
+          "uniform_reference": 0.9149446990077914,
+          "concentration_gap_pp": 61.66113656744581,
+          "top1": 0.11570247933884298,
+          "spearman": 0.10011747318040692
+        },
+        {
+          "k": 1000,
+          "frac": 0.000862199038648072,
+          "coverage": 0.6418181818181818,
+          "uniform_reference": 0.9974086377398172,
+          "concentration_gap_pp": 35.55904559216354,
+          "top1": 0.05785123966942149,
+          "spearman": 0.23233102354427257
+        },
+        {
+          "k": 10000,
+          "frac": 0.008621990386480718,
+          "coverage": 0.9446969696969697,
+          "uniform_reference": 0.9999999999994357,
+          "concentration_gap_pp": 5.530303030246597,
+          "top1": 0.2066115702479339,
+          "spearman": 0.5799526622733893
+        }
+      ]
+    },
+    "imdb": {
+      "N": 232828,
+      "n_facets": 28,
+      "facet_size_min": 92,
+      "facet_size_median": 1975,
+      "facet_size_max": 84135,
+      "facet_skew": 914.5108695652174,
+      "gt_spread_median": 2.64612474870008,
+      "frac_separable": 0.9475,
+      "points": [
+        {
+          "k": 10,
+          "frac": 4.295016063360077e-05,
+          "coverage": 0.17732142857142857,
+          "uniform_reference": 0.19985438592965604,
+          "concentration_gap_pp": 2.253295735822747,
+          "top1": 0.5164835164835165,
+          "spearman": 0.2835694914690331
+        },
+        {
+          "k": 100,
+          "frac": 0.0004295016063360077,
+          "coverage": 0.48875,
+          "uniform_reference": 0.5795951806397157,
+          "concentration_gap_pp": 9.084518063971569,
+          "top1": 0.46153846153846156,
+          "spearman": 0.45353696952572714
+        },
+        {
+          "k": 1000,
+          "frac": 0.004295016063360077,
+          "coverage": 0.8653571428571429,
+          "uniform_reference": 0.9239334447825601,
+          "concentration_gap_pp": 5.857630192541718,
+          "top1": 0.4725274725274725,
+          "spearman": 0.6855815584174855
+        },
+        {
+          "k": 10000,
+          "frac": 0.04295016063360077,
+          "coverage": 0.99375,
+          "uniform_reference": 0.9986276303226409,
+          "concentration_gap_pp": 0.487763032264088,
+          "top1": 0.7802197802197802,
+          "spearman": 0.9293711876990141
+        }
+      ]
+    },
+    "stackexchange": {
+      "N": 499708,
+      "n_facets": 150,
+      "facet_size_min": 36,
+      "facet_size_median": 1017,
+      "facet_size_max": 34775,
+      "facet_skew": 965.9722222222222,
+      "gt_spread_median": 45.65865550173227,
+      "frac_separable": 0.9975,
+      "points": [
+        {
+          "k": 10,
+          "frac": 2.001168682510586e-05,
+          "coverage": 0.0208,
+          "uniform_reference": 0.05920546053777973,
+          "concentration_gap_pp": 3.8405460537779734,
+          "top1": 0.1,
+          "spearman": 0.04190098446800909
+        },
+        {
+          "k": 100,
+          "frac": 0.0002001168682510586,
+          "coverage": 0.0827,
+          "uniform_reference": 0.306389176797205,
+          "concentration_gap_pp": 22.3689176797205,
+          "top1": 0.25,
+          "spearman": 0.1082435990878515
+        },
+        {
+          "k": 1000,
+          "frac": 0.002001168682510586,
+          "coverage": 0.31536666666666663,
+          "uniform_reference": 0.7541517926871234,
+          "concentration_gap_pp": 43.878512602045674,
+          "top1": 0.345,
+          "spearman": 0.24001873867242204
+        },
+        {
+          "k": 10000,
+          "frac": 0.020011686825105863,
+          "coverage": 0.8181666666666666,
+          "uniform_reference": 0.9843318396684769,
+          "concentration_gap_pp": 16.616517300181034,
+          "top1": 0.535,
+          "spearman": 0.6285076861214796
+        }
+      ]
+    }
+  },
+  "finding": "Coverage is governed by two separable causes. (1) Budget: even uniform random retrieval of k items misses facets whose share of the corpus is below ~1/k, so corpora with many small facets are harder at any k. (2) Concentration: similarity retrieval covers FEWER facets than a uniform draw of the same size, because semantically similar items cluster into a few facets. The concentration gap is reported per corpus and is the part a bigger k does not fix cheaply."
+}

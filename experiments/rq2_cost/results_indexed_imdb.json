@@ -1,0 +1,42 @@
+{
+  "machine_conditions": {
+    "cpu_busy_fraction": 0.14,
+    "gpu_utilisation_pct": 0,
+    "load_average_1min": 10.5,
+    "thresholds": {
+      "max_cpu_busy": 0.15,
+      "max_gpu": 20
+    },
+    "note": "load average is recorded for information only; the gate is instantaneous CPU and GPU use"
+  },
+  "baseline": "PostgreSQL 18 + pgvector 0.8.3, HNSW (vector_ip_ops)",
+  "ef_search": 200,
+  "iterative_scan": "off",
+  "max_scan_tuples": null,
+  "table": "movies",
+  "corpus": "imdb",
+  "predicate": "year >= 2000",
+  "n_queries": 20,
+  "reps": 3,
+  "n_facets_reference": 28,
+  "latency_ms": {
+    "pg_hnsw_topk100_ms": {
+      "median": 1.2958608567714691,
+      "p90": 1.7410252243280413
+    },
+    "pg_hnsw_topk1000_ms": {
+      "median": 0.764802098274231,
+      "p90": 1.0308202356100082
+    },
+    "pg_hnsw_topk10000_ms": {
+      "median": 0.7432345300912857,
+      "p90": 0.9806182235479355
+    }
+  },
+  "coverage": {
+    "pg_hnsw_topk100_coverage": 0.46607142857142864,
+    "pg_hnsw_topk1000_coverage": 0.475,
+    "pg_hnsw_topk10000_coverage": 0.475
+  },
+  "note": "this is the configuration the top-k pattern exists for: the index avoids scanning the corpus. Latency here is therefore the fair opponent for the exact path, and the coverage columns show what that speed costs in answer completeness."
+}

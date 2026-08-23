@@ -1,0 +1,6 @@
+# rebuilt by experiments/corpora/*.py -- 6.5 GB, never committed
+experiments/corpora/*/corpus.parquet
+experiments/corpora/*/*.npy
+*.log
+__pycache__/
+target/

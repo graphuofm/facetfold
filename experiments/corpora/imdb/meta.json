@@ -1,0 +1,25 @@
+{
+  "corpus": "imdb_rated_movies",
+  "source": "JOB/IMDb rated-movie subset",
+  "role": "controlled corpus: ablations, precision, contract; not the realism argument",
+  "n_rows": 459865,
+  "n_facets": 29,
+  "value_col": "user rating",
+  "filter_num_col": "release year",
+  "filter_bool_col": "year >= 2000",
+  "embedding": {
+    "model": "sentence-transformers/all-MiniLM-L6-v2",
+    "dim": 384,
+    "normalized": true,
+    "note": "reused verbatim from the earlier study so numbers stay comparable"
+  },
+  "alt_embeddings": {
+    "emb_mpnet.npy": {
+      "model": "sentence-transformers/all-mpnet-base-v2",
+      "dim": 768,
+      "normalized": true,
+      "seconds": 100.2,
+      "purpose": "encoder-robustness check"
+    }
+  }
+}

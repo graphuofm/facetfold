@@ -1,0 +1,183 @@
+{
+  "protocol": {
+    "independent_runs": 3,
+    "warmup_runs_discarded": 1,
+    "queries_per_run": 20,
+    "reps_per_query": 3,
+    "settle_seconds": 30,
+    "note": "each run is a separate process; the machine-quiet gate in quiet.py guards every one of them"
+  },
+  "results": {
+    "imdb": {
+      "exact_f64_ms": {
+        "median_of_runs": 24.56,
+        "min": 23.67,
+        "max": 25.31,
+        "spread_ratio": 1.07,
+        "runs": [
+          23.67,
+          24.56,
+          25.31
+        ]
+      },
+      "exact_f32_ms": {
+        "median_of_runs": 9.63,
+        "min": 9.31,
+        "max": 10.08,
+        "spread_ratio": 1.08,
+        "runs": [
+          9.31,
+          9.63,
+          10.08
+        ]
+      },
+      "topk100_ms": {
+        "median_of_runs": 12.69,
+        "min": 12.18,
+        "max": 18.14,
+        "spread_ratio": 1.49,
+        "runs": [
+          12.18,
+          12.69,
+          18.14
+        ]
+      },
+      "topk1000_ms": {
+        "median_of_runs": 13.04,
+        "min": 12.29,
+        "max": 21.17,
+        "spread_ratio": 1.72,
+        "runs": [
+          12.29,
+          13.04,
+          21.17
+        ]
+      },
+      "topk10000_ms": {
+        "median_of_runs": 13.2,
+        "min": 12.69,
+        "max": 22.2,
+        "spread_ratio": 1.75,
+        "runs": [
+          12.69,
+          13.2,
+          22.2
+        ]
+      }
+    },
+    "stackexchange": {
+      "exact_f64_ms": {
+        "median_of_runs": 38.68,
+        "min": 38.38,
+        "max": 38.7,
+        "spread_ratio": 1.01,
+        "runs": [
+          38.7,
+          38.38,
+          38.68
+        ]
+      },
+      "exact_f32_ms": {
+        "median_of_runs": 20.48,
+        "min": 20.34,
+        "max": 20.84,
+        "spread_ratio": 1.02,
+        "runs": [
+          20.84,
+          20.48,
+          20.34
+        ]
+      },
+      "topk100_ms": {
+        "median_of_runs": 26.08,
+        "min": 26.02,
+        "max": 33.97,
+        "spread_ratio": 1.31,
+        "runs": [
+          33.97,
+          26.08,
+          26.02
+        ]
+      },
+      "topk1000_ms": {
+        "median_of_runs": 26.4,
+        "min": 25.99,
+        "max": 31.86,
+        "spread_ratio": 1.23,
+        "runs": [
+          31.86,
+          26.4,
+          25.99
+        ]
+      },
+      "topk10000_ms": {
+        "median_of_runs": 26.43,
+        "min": 26.3,
+        "max": 31.33,
+        "spread_ratio": 1.19,
+        "runs": [
+          31.33,
+          26.43,
+          26.3
+        ]
+      }
+    },
+    "amazon": {
+      "exact_f64_ms": {
+        "median_of_runs": 70.63,
+        "min": 70.13,
+        "max": 70.91,
+        "spread_ratio": 1.01,
+        "runs": [
+          70.13,
+          70.63,
+          70.91
+        ]
+      },
+      "exact_f32_ms": {
+        "median_of_runs": 40.82,
+        "min": 40.6,
+        "max": 40.84,
+        "spread_ratio": 1.01,
+        "runs": [
+          40.82,
+          40.6,
+          40.84
+        ]
+      },
+      "topk100_ms": {
+        "median_of_runs": 70.46,
+        "min": 69.67,
+        "max": 71.8,
+        "spread_ratio": 1.03,
+        "runs": [
+          69.67,
+          71.8,
+          70.46
+        ]
+      },
+      "topk1000_ms": {
+        "median_of_runs": 70.27,
+        "min": 69.88,
+        "max": 70.84,
+        "spread_ratio": 1.01,
+        "runs": [
+          69.88,
+          70.27,
+          70.84
+        ]
+      },
+      "topk10000_ms": {
+        "median_of_runs": 70.44,
+        "min": 70.19,
+        "max": 70.97,
+        "spread_ratio": 1.01,
+        "runs": [
+          70.44,
+          70.19,
+          70.97
+        ]
+      }
+    }
+  }
+}

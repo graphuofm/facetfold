@@ -1,0 +1,81 @@
+{
+  "machine_conditions": {
+    "cpu_busy_fraction": 0.14,
+    "gpu_utilisation_pct": 0,
+    "load_average_1min": 7.63,
+    "thresholds": {
+      "max_cpu_busy": 0.15,
+      "max_gpu": 20
+    },
+    "note": "load average is recorded for information only; the gate is instantaneous CPU and GPU use"
+  },
+  "corpus": "amazon",
+  "n_rows": 1349709,
+  "n_facets": 33,
+  "eps": 0.05,
+  "predicate": "filter_num >= 2015",
+  "rescan_ms": 99.38574954867363,
+  "build_seconds": 1.51,
+  "state_bytes_per_facet": 24,
+  "state_bytes_total": 792,
+  "state_vs_corpus_ratio": 1.9051725752948015e-07,
+  "maintained_read_ms": 0.006116926670074463,
+  "build_max_rel_err": 1.668914868489037e-14,
+  "facet_under_test": {
+    "facet": "Handmade_Products",
+    "rows": 49988
+  },
+  "delete_plain_us": 0.3725290298461914,
+  "delete_anchor_us": 375.99727511405945,
+  "insert_us": 0.7152557373046875,
+  "delete_anchor_rel_err": 1.122889651768506e-14,
+  "churn": {
+    "ops": 10000,
+    "pool": 500,
+    "seconds": 0.26,
+    "per_op_us": 25.704199820756912,
+    "max_rel_err": 7.362060902919588e-15,
+    "checkpoints": [
+      {
+        "ops": 1000,
+        "rel_err": 4.9683621285076406e-15
+      },
+      {
+        "ops": 2000,
+        "rel_err": 6.8090613260275544e-15
+      },
+      {
+        "ops": 3000,
+        "rel_err": 5.520978979013855e-15
+      },
+      {
+        "ops": 4000,
+        "rel_err": 3.864032866850684e-15
+      },
+      {
+        "ops": 5000,
+        "rel_err": 4.415953623335299e-15
+      },
+      {
+        "ops": 6000,
+        "rel_err": 5.5201483528812836e-15
+      },
+      {
+        "ops": 7000,
+        "rel_err": 7.362060902919588e-15
+      },
+      {
+        "ops": 8000,
+        "rel_err": 7.176897046073089e-15
+      },
+      {
+        "ops": 9000,
+        "rel_err": 4.048400387073569e-15
+      },
+      {
+        "ops": 10000,
+        "rel_err": 4.048263622729284e-15
+      }
+    ]
+  }
+}

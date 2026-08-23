@@ -1,0 +1,92 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  lint:
+    name: fmt + clippy (full workspace)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+      - uses: Swatinem/rust-cache@v2
+      - name: cargo fmt
+        run: cargo fmt --all -- --check
+      - name: cargo clippy (all crates, all targets, deny warnings)
+        run: cargo clippy --workspace --all-targets -- -D warnings
+
+  rust:
+    name: Rust ${{ matrix.toolchain }} on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        toolchain: [stable, beta]
+        os: [ubuntu-latest, macos-latest]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: ${{ matrix.toolchain }}
+      - uses: Swatinem/rust-cache@v2
+      - name: cargo test (full workspace)
+        run: cargo test --workspace --release
+      - name: cli demo runs
+        run: |
+          cargo build -p bruce-cli --release
+          ./target/release/bruce demo
+
+  msrv:
+    name: MSRV check (1.81)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: "1.81"
+      - uses: Swatinem/rust-cache@v2
+      - run: cargo check --workspace --all-targets
+
+  python:
+    name: wheel + pytest, Python ${{ matrix.py }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        py: ["3.9", "3.11", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.py }}
+      - name: build wheel (abi3)
+        uses: PyO3/maturin-action@v1
+        with:
+          working-directory: bruce-py
+          command: build
+          args: --release --out ../dist-ci
+      - name: install + test (failures are failures)
+        run: |
+          python -m pip install --upgrade pip
+          pip install numpy pytest
+          pip install dist-ci/bruce-*.whl
+          pytest bruce-py/tests -q
+
+  audit:
+    name: cargo-deny (advisories + licenses)
+    runs-on: ubuntu-latest
+    continue-on-error: true # advisory-DB churn must not block unrelated PRs
+    steps:
+      - uses: actions/checkout@v4
+      - uses: EmbarkStudios/cargo-deny-action@v2

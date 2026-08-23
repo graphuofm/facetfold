@@ -1,0 +1,296 @@
+{
+  "corpus": "imdb",
+  "n_admitted": 232828,
+  "n_facets": 28,
+  "n_queries": 20,
+  "reps": 3,
+  "pg_parallel_workers": "8",
+  "duckdb_version": "1.5.3",
+  "note": "DuckDB variants aggregate over precomputed similarities so the comparison isolates the aggregation plan; PostgreSQL computes the similarity itself through pgvector, sequential scan forced (this is the exact path, not the ANN path)",
+  "errors": {
+    "postgres/naive": "NumericValueOutOfRange: value out of range: overflow\nCONTEXT:  parallel worker\n",
+    "postgres/stable": "NumericValueOutOfRange: value out of range: underflow\n"
+  },
+  "results": [
+    {
+      "engine": "duckdb",
+      "form": "guarded",
+      "eps": 0.001,
+      "ms_median": 12.155113741755486,
+      "ok_rate": 1.0,
+      "n_groups": 28.0,
+      "n_nonfinite": 0.0,
+      "max_abs_err": 3.552713678800501e-15
+    },
+    {
+      "engine": "duckdb",
+      "form": "guarded",
+      "eps": 0.02,
+      "ms_median": 11.745195835828781,
+      "ok_rate": 1.0,
+      "n_groups": 28.0,
+      "n_nonfinite": 0.0,
+      "max_abs_err": 3.623767952376511e-13
+    },
+    {
+      "engine": "duckdb",
+      "form": "guarded",
+      "eps": 0.05,
+      "ms_median": 11.774078011512756,
+      "ok_rate": 1.0,
+      "n_groups": 28.0,
+      "n_nonfinite": 0.0,
+      "max_abs_err": 5.933031843596837e-13
+    },
+    {
+      "engine": "duckdb",
+      "form": "guarded",
+      "eps": 0.5,
+      "ms_median": 11.623093858361244,
+      "ok_rate": 1.0,
+      "n_groups": 28.0,
+      "n_nonfinite": 0.0,
+      "max_abs_err": 3.3217872896784684e-13
+    },
+    {
+      "engine": "duckdb",
+      "form": "naive",
+      "eps": 0.001,
+      "ms_median": 7.09487684071064,
+      "ok_rate": 1.0,
+      "n_groups": 28.0,
+      "n_nonfinite": 1.85,
+      "max_abs_err": 4.529709940470639e-14
+    },
+    {
+      "engine": "duckdb",
+      "form": "naive",
+      "eps": 0.02,
+      "ms_median": 6.819969043135643,
+      "ok_rate": 1.0,
+      "n_groups": 28.0,
+      "n_nonfinite": 0.0,
+      "max_abs_err": 4.75175454539567e-13
+    },
+    {
+      "engine": "duckdb",
+      "form": "naive",
+      "eps": 0.05,
+      "ms_median": 7.267650216817856,
+      "ok_rate": 1.0,
+      "n_groups": 28.0,
+      "n_nonfinite": 0.0,
+      "max_abs_err": 6.252776074688882e-13
+    },
+    {
+      "engine": "duckdb",
+      "form": "naive",
+      "eps": 0.5,
+      "ms_median": 7.336758077144623,
+      "ok_rate": 1.0,
+      "n_groups": 28.0,
+      "n_nonfinite": 0.0,
+      "max_abs_err": 2.957634137601417e-13
+    },
+    {
+      "engine": "duckdb",
+      "form": "stable",
+      "eps": 0.001,
+      "ms_median": 21.103523671627045,
+      "ok_rate": 1.0,
+      "n_groups": 28.0,
+      "n_nonfinite": 0.0,
+      "max_abs_err": 4.440892098500626e-15
+    },
+    {
+      "engine": "duckdb",
+      "form": "stable",
+      "eps": 0.02,
+      "ms_median": 19.858084619045258,
+      "ok_rate": 1.0,
+      "n_groups": 28.0,
+      "n_nonfinite": 0.0,
+      "max_abs_err": 3.730349362740526e-13
+    },
+    {
+      "engine": "duckdb",
+      "form": "stable",
+      "eps": 0.05,
+      "ms_median": 18.76804791390896,
+      "ok_rate": 1.0,
+      "n_groups": 28.0,
+      "n_nonfinite": 0.0,
+      "max_abs_err": 5.764277943853813e-13
+    },
+    {
+      "engine": "duckdb",
+      "form": "stable",
+      "eps": 0.5,
+      "ms_median": 17.313210293650627,
+      "ok_rate": 1.0,
+      "n_groups": 28.0,
+      "n_nonfinite": 0.0,
+      "max_abs_err": 3.2596148002994596e-13
+    },
+    {
+      "engine": "numpy",
+      "form": "reference",
+      "eps": 0.001,
+      "ms_median": 2.6619527488946915,
+      "ok_rate": 1.0,
+      "n_groups": 28.0,
+      "n_nonfinite": 0.0,
+      "max_abs_err": 0.0
+    },
+    {
+      "engine": "numpy",
+      "form": "reference",
+      "eps": 0.02,
+      "ms_median": 1.8128715455532074,
+      "ok_rate": 1.0,
+      "n_groups": 28.0,
+      "n_nonfinite": 0.0,
+      "max_abs_err": 0.0
+    },
+    {
+      "engine": "numpy",
+      "form": "reference",
+      "eps": 0.05,
+      "ms_median": 1.8202047795057297,
+      "ok_rate": 1.0,
+      "n_groups": 28.0,
+      "n_nonfinite": 0.0,
+      "max_abs_err": 0.0
+    },
+    {
+      "engine": "numpy",
+      "form": "reference",
+      "eps": 0.5,
+      "ms_median": 1.8362067639827728,
+      "ok_rate": 1.0,
+      "n_groups": 28.0,
+      "n_nonfinite": 0.0,
+      "max_abs_err": 0.0
+    },
+    {
+      "engine": "postgres",
+      "form": "guarded",
+      "eps": 0.001,
+      "ms_median": 516.8940220028162,
+      "ok_rate": 1.0,
+      "n_groups": 28.0,
+      "n_nonfinite": 0.0,
+      "max_abs_err": 0.00046317360726799706
+    },
+    {
+      "engine": "postgres",
+      "form": "guarded",
+      "eps": 0.02,
+      "ms_median": 516.4378602057695,
+      "ok_rate": 1.0,
+      "n_groups": 28.0,
+      "n_nonfinite": 0.0,
+      "max_abs_err": 2.2721915345691457e-05
+    },
+    {
+      "engine": "postgres",
+      "form": "guarded",
+      "eps": 0.05,
+      "ms_median": 519.273778423667,
+      "ok_rate": 1.0,
+      "n_groups": 28.0,
+      "n_nonfinite": 0.0,
+      "max_abs_err": 6.809958400300076e-06
+    },
+    {
+      "engine": "postgres",
+      "form": "guarded",
+      "eps": 0.5,
+      "ms_median": 514.5871844142675,
+      "ok_rate": 1.0,
+      "n_groups": 28.0,
+      "n_nonfinite": 0.0,
+      "max_abs_err": 1.6467544750042862e-07
+    },
+    {
+      "engine": "postgres",
+      "form": "naive",
+      "eps": 0.001,
+      "ms_median": 49.580592662096024,
+      "ok_rate": 0.25,
+      "n_groups": 28.0,
+      "n_nonfinite": 0.0,
+      "max_abs_err": 0.00011902818224296396
+    },
+    {
+      "engine": "postgres",
+      "form": "naive",
+      "eps": 0.02,
+      "ms_median": 49.72613602876663,
+      "ok_rate": 1.0,
+      "n_groups": 28.0,
+      "n_nonfinite": 0.0,
+      "max_abs_err": 2.272191534924417e-05
+    },
+    {
+      "engine": "postgres",
+      "form": "naive",
+      "eps": 0.05,
+      "ms_median": 49.688033759593964,
+      "ok_rate": 1.0,
+      "n_groups": 28.0,
+      "n_nonfinite": 0.0,
+      "max_abs_err": 6.8099583998559865e-06
+    },
+    {
+      "engine": "postgres",
+      "form": "naive",
+      "eps": 0.5,
+      "ms_median": 49.3776910007,
+      "ok_rate": 1.0,
+      "n_groups": 28.0,
+      "n_nonfinite": 0.0,
+      "max_abs_err": 1.6467544483589336e-07
+    },
+    {
+      "engine": "postgres",
+      "form": "stable",
+      "eps": 0.001,
+      "ms_median": 502.22694873809814,
+      "ok_rate": 0.05,
+      "n_groups": 28.0,
+      "n_nonfinite": 0.0,
+      "max_abs_err": 0.00011902818224074352
+    },
+    {
+      "engine": "postgres",
+      "form": "stable",
+      "eps": 0.02,
+      "ms_median": 501.7305351793766,
+      "ok_rate": 1.0,
+      "n_groups": 28.0,
+      "n_nonfinite": 0.0,
+      "max_abs_err": 2.2721915347467814e-05
+    },
+    {
+      "engine": "postgres",
+      "form": "stable",
+      "eps": 0.05,
+      "ms_median": 501.74108147621155,
+      "ok_rate": 1.0,
+      "n_groups": 28.0,
+      "n_nonfinite": 0.0,
+      "max_abs_err": 6.809958394971005e-06
+    },
+    {
+      "engine": "postgres",
+      "form": "stable",
+      "eps": 0.5,
+      "ms_median": 504.646398127079,
+      "ok_rate": 1.0,
+      "n_groups": 28.0,
+      "n_nonfinite": 0.0,
+      "max_abs_err": 1.6467544483589336e-07
+    }
+  ]
+}

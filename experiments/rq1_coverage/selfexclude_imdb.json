@@ -1,0 +1,86 @@
+{
+  "corpus": "imdb",
+  "n_admitted": 232828,
+  "n_facets": 28,
+  "eps": 0.05,
+  "n_queries": 200,
+  "dup_sim_threshold": 0.9,
+  "self_similarity_median": 1.000000051159102,
+  "self_similarity_min": 0.9999999318857451,
+  "note": "coverage with the query's own source item present, removed, and with near duplicates removed",
+  "results": [
+    {
+      "mode": "keep",
+      "k": 10,
+      "coverage_mean": 0.16839285714285715,
+      "rows_removed_mean": 0.0
+    },
+    {
+      "mode": "keep",
+      "k": 100,
+      "coverage_mean": 0.4842857142857143,
+      "rows_removed_mean": 0.0
+    },
+    {
+      "mode": "keep",
+      "k": 1000,
+      "coverage_mean": 0.8619642857142857,
+      "rows_removed_mean": 0.0
+    },
+    {
+      "mode": "keep",
+      "k": 10000,
+      "coverage_mean": 0.9951785714285714,
+      "rows_removed_mean": 0.0
+    },
+    {
+      "mode": "drop_self",
+      "k": 10,
+      "coverage_mean": 0.1694642857142857,
+      "rows_removed_mean": 1.0
+    },
+    {
+      "mode": "drop_self",
+      "k": 100,
+      "coverage_mean": 0.48625,
+      "rows_removed_mean": 1.0
+    },
+    {
+      "mode": "drop_self",
+      "k": 1000,
+      "coverage_mean": 0.8621428571428572,
+      "rows_removed_mean": 1.0
+    },
+    {
+      "mode": "drop_self",
+      "k": 10000,
+      "coverage_mean": 0.9951785714285714,
+      "rows_removed_mean": 1.0
+    },
+    {
+      "mode": "drop_near_dupes",
+      "k": 10,
+      "coverage_mean": 0.17053571428571426,
+      "rows_removed_mean": 1.325
+    },
+    {
+      "mode": "drop_near_dupes",
+      "k": 100,
+      "coverage_mean": 0.48660714285714285,
+      "rows_removed_mean": 1.325
+    },
+    {
+      "mode": "drop_near_dupes",
+      "k": 1000,
+      "coverage_mean": 0.8623214285714286,
+      "rows_removed_mean": 1.325
+    },
+    {
+      "mode": "drop_near_dupes",
+      "k": 10000,
+      "coverage_mean": 0.9951785714285714,
+      "rows_removed_mean": 1.325
+    }
+  ],
+  "max_abs_delta_pp": 0.232142857142853
+}

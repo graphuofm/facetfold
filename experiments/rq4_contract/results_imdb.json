@@ -1,0 +1,59 @@
+{
+  "corpus": "imdb",
+  "n_admitted": 232828,
+  "n_facets": 28,
+  "eps": 0.02,
+  "n_queries": 200,
+  "predicate": "filter_num >= 2000",
+  "comparison": "at the k the planner certified, plain truncation is evaluated on the same data and query",
+  "results": [
+    {
+      "budget": 0.01,
+      "plan_contract": 0.81,
+      "kstar_median": 18593.0,
+      "ms_median": 57.798631489276886,
+      "max_abs_err_p100": 0.0014189773820945106,
+      "promise_held": 1.0,
+      "coverage": 1.0,
+      "topk_coverage": 0.96,
+      "topk_err_p100": 2.1557947686303285,
+      "topk_promise_held": 0.235
+    },
+    {
+      "budget": 0.05,
+      "plan_contract": 0.76,
+      "kstar_median": 8691.5,
+      "ms_median": 57.63738602399826,
+      "max_abs_err_p100": 0.006831643216845595,
+      "promise_held": 1.0,
+      "coverage": 1.0,
+      "topk_coverage": 0.9283928571428571,
+      "topk_err_p100": 2.515273639040257,
+      "topk_promise_held": 0.23
+    },
+    {
+      "budget": 0.2,
+      "plan_contract": 0.66,
+      "kstar_median": 3631.0,
+      "ms_median": 57.35389515757561,
+      "max_abs_err_p100": 0.03170495249935623,
+      "promise_held": 1.0,
+      "coverage": 1.0,
+      "topk_coverage": 0.9046428571428571,
+      "topk_err_p100": 2.878643769254539,
+      "topk_promise_held": 0.21
+    },
+    {
+      "budget": 0.5,
+      "plan_contract": 0.55,
+      "kstar_median": 1981.0,
+      "ms_median": 57.136332616209984,
+      "max_abs_err_p100": 0.0680018260755364,
+      "promise_held": 1.0,
+      "coverage": 1.0,
+      "topk_coverage": 0.8719642857142857,
+      "topk_err_p100": 3.1414919168176803,
+      "topk_promise_held": 0.175
+    }
+  ]
+}

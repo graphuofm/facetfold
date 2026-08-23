@@ -1,0 +1,81 @@
+{
+  "machine_conditions": {
+    "cpu_busy_fraction": 0.073,
+    "gpu_utilisation_pct": 0,
+    "load_average_1min": 7.44,
+    "thresholds": {
+      "max_cpu_busy": 0.15,
+      "max_gpu": 20
+    },
+    "note": "load average is recorded for information only; the gate is instantaneous CPU and GPU use"
+  },
+  "corpus": "stackexchange",
+  "n_rows": 499708,
+  "n_facets": 150,
+  "eps": 0.05,
+  "predicate": "filter_num >= 3",
+  "rescan_ms": 41.84648022055626,
+  "build_seconds": 0.43,
+  "state_bytes_per_facet": 24,
+  "state_bytes_total": 3600,
+  "state_vs_corpus_ratio": 2.3390283302071788e-06,
+  "maintained_read_ms": 0.02617761492729187,
+  "build_max_rel_err": 2.0261661624568657e-14,
+  "facet_under_test": {
+    "facet": "stackoverflow",
+    "rows": 34775
+  },
+  "delete_plain_us": 0.3241002559661865,
+  "delete_anchor_us": 282.17583894729614,
+  "insert_us": 0.6891787052154541,
+  "delete_anchor_rel_err": 1.488658443563706e-14,
+  "churn": {
+    "ops": 10000,
+    "pool": 500,
+    "seconds": 0.11,
+    "per_op_us": 10.547876358032227,
+    "max_rel_err": 1.3275139363697196e-14,
+    "checkpoints": [
+      {
+        "ops": 1000,
+        "rel_err": 9.344598121040195e-15
+      },
+      {
+        "ops": 2000,
+        "rel_err": 1.2329798136837683e-14
+      },
+      {
+        "ops": 3000,
+        "rel_err": 1.2362037294743297e-14
+      },
+      {
+        "ops": 4000,
+        "rel_err": 1.0688125415444298e-14
+      },
+      {
+        "ops": 5000,
+        "rel_err": 1.1168712018277044e-14
+      },
+      {
+        "ops": 6000,
+        "rel_err": 1.2227771048629251e-14
+      },
+      {
+        "ops": 7000,
+        "rel_err": 1.3275139363697196e-14
+      },
+      {
+        "ops": 8000,
+        "rel_err": 1.2094431364170393e-14
+      },
+      {
+        "ops": 9000,
+        "rel_err": 1.0134381117334688e-14
+      },
+      {
+        "ops": 10000,
+        "rel_err": 1.0930341697558396e-14
+      }
+    ]
+  }
+}

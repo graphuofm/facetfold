@@ -1,0 +1,24 @@
+{
+  "corpus": "stackexchange",
+  "source": "donfu/oa-stackexchange",
+  "role": "second real corpus: shows RQ1 is not an artifact of one domain",
+  "sampling": {
+    "cap_rows": 1200000,
+    "cap_per_facet": 60000,
+    "note": "streamed in dataset order; per-facet cap keeps the largest sites from swamping the corpus"
+  },
+  "n_rows": 1200000,
+  "n_facets": 152,
+  "value_col": "answer_score",
+  "filter_num_col": "question_score",
+  "filter_bool_col": "question_score >= 3",
+  "seconds": 379.9,
+  "embedding": {
+    "model": "sentence-transformers/all-MiniLM-L6-v2",
+    "dim": 384,
+    "normalized": true,
+    "dtype": "float32",
+    "seconds": 846.6,
+    "device": "cuda"
+  }
+}

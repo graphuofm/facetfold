@@ -1,0 +1,95 @@
+{
+  "machine_conditions": {
+    "cpu_busy_fraction": 0.033,
+    "gpu_utilisation_pct": 0,
+    "load_average_1min": 16.64,
+    "thresholds": {
+      "max_cpu_busy": 0.15,
+      "max_gpu": 20
+    },
+    "note": "load average is recorded for information only; the gate is instantaneous CPU and GPU use"
+  },
+  "corpus": "imdb",
+  "table": "movies",
+  "k": 1000,
+  "n_queries": 20,
+  "reps": 3,
+  "ef_search": 200,
+  "max_scan_tuples": 20000,
+  "engine": "PostgreSQL 18.4 + pgvector 0.8.3, HNSW (vector_ip_ops)",
+  "note": "fill is the fraction of the requested k that the index actually returned after the predicate; a fill below 1 is the overfiltering behaviour the iterative scan exists to fix",
+  "results": [
+    {
+      "target_selectivity": 0.01,
+      "n_admitted": 4937,
+      "n_facets": 27,
+      "exact_ms": 10.366754606366158,
+      "ann_ms": 5.836376920342445,
+      "ann_coverage": 0.8944444444444445,
+      "ann_fill": 1.0,
+      "iter_ms": 5.232561379671097,
+      "iter_coverage": 0.8944444444444445,
+      "iter_fill": 1.0
+    },
+    {
+      "target_selectivity": 0.05,
+      "n_admitted": 23155,
+      "n_facets": 28,
+      "exact_ms": 19.866250455379486,
+      "ann_ms": 1.8747895956039429,
+      "ann_coverage": 0.18035714285714285,
+      "ann_fill": 0.0101,
+      "iter_ms": 52.09854245185852,
+      "iter_coverage": 0.8785714285714287,
+      "iter_fill": 0.9155
+    },
+    {
+      "target_selectivity": 0.1,
+      "n_admitted": 64063,
+      "n_facets": 28,
+      "exact_ms": 24.465803056955338,
+      "ann_ms": 1.9822418689727783,
+      "ann_coverage": 0.28035714285714286,
+      "ann_fill": 0.028499999999999998,
+      "iter_ms": 29.62944284081459,
+      "iter_coverage": 0.8732142857142857,
+      "iter_fill": 1.0
+    },
+    {
+      "target_selectivity": 0.25,
+      "n_admitted": 123044,
+      "n_facets": 28,
+      "exact_ms": 24.122171103954315,
+      "ann_ms": 1.9142422825098038,
+      "ann_coverage": 0.36607142857142855,
+      "ann_fill": 0.05525,
+      "iter_ms": 23.928072303533554,
+      "iter_coverage": 0.8642857142857142,
+      "iter_fill": 1.0
+    },
+    {
+      "target_selectivity": 0.5,
+      "n_admitted": 232828,
+      "n_facets": 28,
+      "exact_ms": 27.811825275421143,
+      "ann_ms": 1.8239207565784454,
+      "ann_coverage": 0.475,
+      "ann_fill": 0.10455,
+      "iter_ms": 24.049019441008568,
+      "iter_coverage": 0.8553571428571429,
+      "iter_fill": 1.0
+    },
+    {
+      "target_selectivity": 1.0,
+      "n_admitted": 459865,
+      "n_facets": 29,
+      "exact_ms": 38.70425000786781,
+      "ann_ms": 1.7189234495162964,
+      "ann_coverage": 0.5758620689655173,
+      "ann_fill": 0.22595,
+      "iter_ms": 13.110466301441193,
+      "iter_coverage": 0.8120689655172413,
+      "iter_fill": 1.0
+    }
+  ]
+}

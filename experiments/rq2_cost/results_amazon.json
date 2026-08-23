@@ -1,0 +1,62 @@
+{
+  "machine_conditions": {
+    "cpu_busy_fraction": 0.004,
+    "gpu_utilisation_pct": 0,
+    "load_average_1min": 9.8,
+    "thresholds": {
+      "max_cpu_busy": 0.15,
+      "max_gpu": 20
+    },
+    "note": "load average is recorded for information only; the gate is instantaneous CPU and GPU use"
+  },
+  "corpus": "amazon_reviews_2023",
+  "corpus_dir": "amazon",
+  "n_rows": 1524113,
+  "n_admitted": 1349709,
+  "n_facets": 33,
+  "dim": 384,
+  "eps": 0.05,
+  "predicate": "filter_num >= 2015",
+  "n_queries": 20,
+  "reps": 3,
+  "load_seconds": 1.61,
+  "attach_seconds": {
+    "attach_f64_s": 1.63,
+    "attach_f32_s": 0.8
+  },
+  "latency_ms": {
+    "exact_f64_ms": {
+      "median": 70.90529426932335,
+      "p90": 72.03061915934086
+    },
+    "exact_f32_ms": {
+      "median": 40.835682302713394,
+      "p90": 43.53349097073078
+    },
+    "topk100_ms": {
+      "median": 70.46037539839745,
+      "p90": 82.38286077976227
+    },
+    "topk1000_ms": {
+      "median": 70.84069959819317,
+      "p90": 81.02244175970556
+    },
+    "topk10000_ms": {
+      "median": 70.96753269433975,
+      "p90": 78.82123179733753
+    }
+  },
+  "correctness": {
+    "exact_f64_relerr": {
+      "max_rel_err": 3.333824189744107e-14
+    },
+    "exact_f32_relerr": {
+      "max_rel_err": 2.2362505102864564e-07
+    }
+  },
+  "facets_answered": {
+    "exact_f64_facets": 33.0,
+    "exact_f32_facets": 33.0
+  },
+  "note": "top-k is timed on the same in-memory scores and layout as the exact path, so the comparison isolates the aggregation strategy, not the storage stack; an index would reduce its scan cost and is measured separately"
+}

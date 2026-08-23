@@ -1,0 +1,223 @@
+{
+  "corpus": "amazon_reviews_2023",
+  "source": "McAuley-Lab/Amazon-Reviews-2023",
+  "sampling": {
+    "cap_per_category": 50000,
+    "stride": 5,
+    "prefix_cap": 3000000,
+    "note": "strided sample over a bounded file prefix; not a uniform random sample of the full category"
+  },
+  "n_rows": 1524113,
+  "n_facets": 33,
+  "value_col": "rating (1-5 stars)",
+  "filter_num_col": "review year",
+  "filter_bool_col": "verified_purchase",
+  "per_category": [
+    {
+      "category": "Subscription_Boxes",
+      "kept": 3244,
+      "lines_read": 16216,
+      "seconds": 1.0
+    },
+    {
+      "category": "Magazine_Subscriptions",
+      "kept": 14300,
+      "lines_read": 71497,
+      "seconds": 1.3
+    },
+    {
+      "category": "Gift_Cards",
+      "kept": 30482,
+      "lines_read": 152410,
+      "seconds": 1.4
+    },
+    {
+      "category": "Digital_Music",
+      "kept": 26087,
+      "lines_read": 130434,
+      "seconds": 1.8
+    },
+    {
+      "category": "Health_and_Personal_Care",
+      "kept": 50000,
+      "lines_read": 249997,
+      "seconds": 2.7
+    },
+    {
+      "category": "Handmade_Products",
+      "kept": 50000,
+      "lines_read": 249997,
+      "seconds": 3.3
+    },
+    {
+      "category": "All_Beauty",
+      "kept": 50000,
+      "lines_read": 249997,
+      "seconds": 2.4
+    },
+    {
+      "category": "Appliances",
+      "kept": 50000,
+      "lines_read": 249997,
+      "seconds": 3.4
+    },
+    {
+      "category": "Amazon_Fashion",
+      "kept": 50000,
+      "lines_read": 249997,
+      "seconds": 3.0
+    },
+    {
+      "category": "Musical_Instruments",
+      "kept": 50000,
+      "lines_read": 249997,
+      "seconds": 3.3
+    },
+    {
+      "category": "Software",
+      "kept": 50000,
+      "lines_read": 249997,
+      "seconds": 2.8
+    },
+    {
+      "category": "Industrial_and_Scientific",
+      "kept": 50000,
+      "lines_read": 249997,
+      "seconds": 2.4
+    },
+    {
+      "category": "Video_Games",
+      "kept": 50000,
+      "lines_read": 249997,
+      "seconds": 6.3
+    },
+    {
+      "category": "Baby_Products",
+      "kept": 50000,
+      "lines_read": 249997,
+      "seconds": 3.0
+    },
+    {
+      "category": "CDs_and_Vinyl",
+      "kept": 50000,
+      "lines_read": 249997,
+      "seconds": 3.0
+    },
+    {
+      "category": "Arts_Crafts_and_Sewing",
+      "kept": 50000,
+      "lines_read": 249997,
+      "seconds": 3.0
+    },
+    {
+      "category": "Office_Products",
+      "kept": 50000,
+      "lines_read": 249997,
+      "seconds": 3.0
+    },
+    {
+      "category": "Grocery_and_Gourmet_Food",
+      "kept": 50000,
+      "lines_read": 249997,
+      "seconds": 3.9
+    },
+    {
+      "category": "Toys_and_Games",
+      "kept": 50000,
+      "lines_read": 249997,
+      "seconds": 3.1
+    },
+    {
+      "category": "Patio_Lawn_and_Garden",
+      "kept": 50000,
+      "lines_read": 249997,
+      "seconds": 3.0
+    },
+    {
+      "category": "Pet_Supplies",
+      "kept": 50000,
+      "lines_read": 249997,
+      "seconds": 3.2
+    },
+    {
+      "category": "Movies_and_TV",
+      "kept": 50000,
+      "lines_read": 249997,
+      "seconds": 3.1
+    },
+    {
+      "category": "Automotive",
+      "kept": 50000,
+      "lines_read": 249997,
+      "seconds": 3.9
+    },
+    {
+      "category": "Sports_and_Outdoors",
+      "kept": 50000,
+      "lines_read": 249997,
+      "seconds": 2.9
+    },
+    {
+      "category": "Cell_Phones_and_Accessories",
+      "kept": 50000,
+      "lines_read": 249997,
+      "seconds": 3.6
+    },
+    {
+      "category": "Beauty_and_Personal_Care",
+      "kept": 50000,
+      "lines_read": 249997,
+      "seconds": 3.7
+    },
+    {
+      "category": "Health_and_Household",
+      "kept": 50000,
+      "lines_read": 249997,
+      "seconds": 3.8
+    },
+    {
+      "category": "Tools_and_Home_Improvement",
+      "kept": 50000,
+      "lines_read": 249997,
+      "seconds": 3.2
+    },
+    {
+      "category": "Kindle_Store",
+      "kept": 50000,
+      "lines_read": 249997,
+      "seconds": 6.2
+    },
+    {
+      "category": "Books",
+      "kept": 50000,
+      "lines_read": 249997,
+      "seconds": 4.0
+    },
+    {
+      "category": "Electronics",
+      "kept": 50000,
+      "lines_read": 249997,
+      "seconds": 3.2
+    },
+    {
+      "category": "Clothing_Shoes_and_Jewelry",
+      "kept": 50000,
+      "lines_read": 249997,
+      "seconds": 4.2
+    },
+    {
+      "category": "Home_and_Kitchen",
+      "kept": 50000,
+      "lines_read": 249997,
+      "seconds": 3.7
+    }
+  ],
+  "embedding": {
+    "model": "sentence-transformers/all-MiniLM-L6-v2",
+    "dim": 384,
+    "normalized": true,
+    "dtype": "float32",
+    "seconds": 397.3,
+    "device": "cuda"
+  }
+}

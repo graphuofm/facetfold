@@ -1,0 +1,62 @@
+{
+  "machine_conditions": {
+    "cpu_busy_fraction": 0.141,
+    "gpu_utilisation_pct": 0,
+    "load_average_1min": 7.84,
+    "thresholds": {
+      "max_cpu_busy": 0.15,
+      "max_gpu": 20
+    },
+    "note": "load average is recorded for information only; the gate is instantaneous CPU and GPU use"
+  },
+  "corpus": "imdb_rated_movies",
+  "corpus_dir": "imdb",
+  "n_rows": 459865,
+  "n_admitted": 232828,
+  "n_facets": 28,
+  "dim": 384,
+  "eps": 0.05,
+  "predicate": "filter_num >= 2000",
+  "n_queries": 20,
+  "reps": 3,
+  "load_seconds": 0.3,
+  "attach_seconds": {
+    "attach_f64_s": 0.56,
+    "attach_f32_s": 0.28
+  },
+  "latency_ms": {
+    "exact_f64_ms": {
+      "median": 25.30680038034916,
+      "p90": 28.001095354557037
+    },
+    "exact_f32_ms": {
+      "median": 10.08342020213604,
+      "p90": 11.256532743573189
+    },
+    "topk100_ms": {
+      "median": 18.139036372303963,
+      "p90": 27.464066445827484
+    },
+    "topk1000_ms": {
+      "median": 21.173732355237007,
+      "p90": 31.7045446485281
+    },
+    "topk10000_ms": {
+      "median": 22.204482927918434,
+      "p90": 31.80689960718155
+    }
+  },
+  "correctness": {
+    "exact_f64_relerr": {
+      "max_rel_err": 8.402436656338163e-14
+    },
+    "exact_f32_relerr": {
+      "max_rel_err": 2.3561796798200248e-07
+    }
+  },
+  "facets_answered": {
+    "exact_f64_facets": 28.0,
+    "exact_f32_facets": 28.0
+  },
+  "note": "top-k is timed on the same in-memory scores and layout as the exact path, so the comparison isolates the aggregation strategy, not the storage stack; an index would reduce its scan cost and is measured separately"
+}

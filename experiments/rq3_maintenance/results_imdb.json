@@ -1,0 +1,81 @@
+{
+  "machine_conditions": {
+    "cpu_busy_fraction": 0.017,
+    "gpu_utilisation_pct": 0,
+    "load_average_1min": 7.44,
+    "thresholds": {
+      "max_cpu_busy": 0.15,
+      "max_gpu": 20
+    },
+    "note": "load average is recorded for information only; the gate is instantaneous CPU and GPU use"
+  },
+  "corpus": "imdb",
+  "n_rows": 232828,
+  "n_facets": 28,
+  "eps": 0.05,
+  "predicate": "filter_num >= 2000",
+  "rescan_ms": 17.005711793899536,
+  "build_seconds": 0.2,
+  "state_bytes_per_facet": 24,
+  "state_bytes_total": 672,
+  "state_vs_corpus_ratio": 9.370944138240168e-07,
+  "maintained_read_ms": 0.0053532421588897705,
+  "build_max_rel_err": 4.42345296832904e-15,
+  "facet_under_test": {
+    "facet": "(none)",
+    "rows": 84135
+  },
+  "delete_plain_us": 0.3241002559661865,
+  "delete_anchor_us": 654.1237235069275,
+  "insert_us": 0.6966292858123779,
+  "delete_anchor_rel_err": 1.4851351546096198e-14,
+  "churn": {
+    "ops": 10000,
+    "pool": 500,
+    "seconds": 0.06,
+    "per_op_us": 5.692523345351219,
+    "max_rel_err": 9.161319425428832e-15,
+    "checkpoints": [
+      {
+        "ops": 1000,
+        "rel_err": 7.573359428727112e-15
+      },
+      {
+        "ops": 2000,
+        "rel_err": 8.306268990484603e-15
+      },
+      {
+        "ops": 3000,
+        "rel_err": 7.329057099067339e-15
+      },
+      {
+        "ops": 4000,
+        "rel_err": 7.329058642618677e-15
+      },
+      {
+        "ops": 5000,
+        "rel_err": 6.9626013979048995e-15
+      },
+      {
+        "ops": 6000,
+        "rel_err": 9.161319425428832e-15
+      },
+      {
+        "ops": 7000,
+        "rel_err": 7.939815665206498e-15
+      },
+      {
+        "ops": 8000,
+        "rel_err": 7.939810999191709e-15
+      },
+      {
+        "ops": 9000,
+        "rel_err": 7.817665662126789e-15
+      },
+      {
+        "ops": 10000,
+        "rel_err": 7.69551695254422e-15
+      }
+    ]
+  }
+}

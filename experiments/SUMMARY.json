@@ -1,0 +1,675 @@
+{
+  "corpora": {
+    "amazon": {
+      "rows": 1524113,
+      "facets": 33,
+      "value": "rating (1-5 stars)",
+      "source": "McAuley-Lab/Amazon-Reviews-2023",
+      "encoders": [
+        "sentence-transformers/all-MiniLM-L6-v2"
+      ]
+    },
+    "imdb": {
+      "rows": 459865,
+      "facets": 29,
+      "value": "user rating",
+      "source": "JOB/IMDb rated-movie subset",
+      "encoders": [
+        "sentence-transformers/all-MiniLM-L6-v2",
+        "sentence-transformers/all-mpnet-base-v2"
+      ]
+    },
+    "stackexchange": {
+      "rows": 1200000,
+      "facets": 152,
+      "value": "answer_score",
+      "source": "donfu/oa-stackexchange",
+      "encoders": [
+        "sentence-transformers/all-MiniLM-L6-v2"
+      ]
+    }
+  },
+  "rq0_retriever": {
+    "all-MiniLM-L6-v2": {
+      "ndcg@10": 0.7385646155871528,
+      "ndcg@50": 0.8120547918104613,
+      "n_queries": 300
+    },
+    "all-mpnet-base-v2": {
+      "ndcg@10": 0.7332928882863657,
+      "ndcg@50": 0.8107220930357462,
+      "n_queries": 300
+    }
+  },
+  "rq1_coverage": {
+    "amazon": {
+      "corpus": "amazon",
+      "encoder": "all-MiniLM-L6-v2 384d normalized",
+      "queries": 200,
+      "admitted": 1349709,
+      "facets": 33,
+      "coverage": {
+        "10": 0.1036,
+        "100": 0.2983,
+        "1000": 0.6418,
+        "10000": 0.9447
+      },
+      "top1_separable": {
+        "10": 0.2975,
+        "100": 0.1157,
+        "1000": 0.0579,
+        "10000": 0.2066
+      }
+    },
+    "amazon_esci_queries": {
+      "corpus": "amazon",
+      "encoder": "all-MiniLM-L6-v2 384d normalized",
+      "queries": 200,
+      "admitted": 1349709,
+      "facets": 33,
+      "coverage": {
+        "10": 0.1182,
+        "100": 0.3811,
+        "1000": 0.7783,
+        "10000": 0.9883
+      },
+      "top1_separable": {
+        "10": 0.1077,
+        "100": 0.1154,
+        "1000": 0.2077,
+        "10000": 0.3231
+      }
+    },
+    "imdb": {
+      "corpus": "imdb",
+      "encoder": "all-MiniLM-L6-v2 384d normalized",
+      "queries": 200,
+      "admitted": 232828,
+      "facets": 28,
+      "coverage": {
+        "10": 0.1773,
+        "100": 0.4888,
+        "1000": 0.8654,
+        "10000": 0.9938
+      },
+      "top1_separable": {
+        "10": 0.5165,
+        "100": 0.4615,
+        "1000": 0.4725,
+        "10000": 0.7802
+      }
+    },
+    "imdb_mpnet": {
+      "corpus": "imdb",
+      "encoder": "emb_mpnet.npy",
+      "queries": 200,
+      "admitted": 232828,
+      "facets": 28,
+      "coverage": {
+        "10": 0.1723,
+        "100": 0.472,
+        "1000": 0.85,
+        "10000": 0.9921
+      },
+      "top1_separable": {
+        "10": 0.5137,
+        "100": 0.3607,
+        "1000": 0.4208,
+        "10000": 0.8142
+      }
+    },
+    "stackexchange": {
+      "corpus": "stackexchange",
+      "encoder": "all-MiniLM-L6-v2 384d normalized",
+      "queries": 200,
+      "admitted": 499708,
+      "facets": 150,
+      "coverage": {
+        "10": 0.0208,
+        "100": 0.0827,
+        "1000": 0.3154,
+        "10000": 0.8182
+      },
+      "top1_separable": {
+        "10": 0.1,
+        "100": 0.25,
+        "1000": 0.345,
+        "10000": 0.535
+      }
+    }
+  },
+  "rq1_concentration": {
+    "amazon": {
+      "10": {
+        "measured": 0.1036,
+        "uniform_ref": 0.2621,
+        "gap_pp": 15.8
+      },
+      "100": {
+        "measured": 0.2983,
+        "uniform_ref": 0.9149,
+        "gap_pp": 61.7
+      },
+      "1000": {
+        "measured": 0.6418,
+        "uniform_ref": 0.9974,
+        "gap_pp": 35.6
+      },
+      "10000": {
+        "measured": 0.9447,
+        "uniform_ref": 1.0,
+        "gap_pp": 5.5
+      }
+    },
+    "imdb": {
+      "10": {
+        "measured": 0.1773,
+        "uniform_ref": 0.1999,
+        "gap_pp": 2.3
+      },
+      "100": {
+        "measured": 0.4888,
+        "uniform_ref": 0.5796,
+        "gap_pp": 9.1
+      },
+      "1000": {
+        "measured": 0.8654,
+        "uniform_ref": 0.9239,
+        "gap_pp": 5.9
+      },
+      "10000": {
+        "measured": 0.9938,
+        "uniform_ref": 0.9986,
+        "gap_pp": 0.5
+      }
+    },
+    "stackexchange": {
+      "10": {
+        "measured": 0.0208,
+        "uniform_ref": 0.0592,
+        "gap_pp": 3.8
+      },
+      "100": {
+        "measured": 0.0827,
+        "uniform_ref": 0.3064,
+        "gap_pp": 22.4
+      },
+      "1000": {
+        "measured": 0.3154,
+        "uniform_ref": 0.7542,
+        "gap_pp": 43.9
+      },
+      "10000": {
+        "measured": 0.8182,
+        "uniform_ref": 0.9843,
+        "gap_pp": 16.6
+      }
+    }
+  },
+  "rq1_retracted": "coverage collapses onto one curve against k/N -- refuted by the third corpus; see module docstring",
+  "rq1_baselines": {
+    "amazon": {
+      "encoder": null,
+      "k": 1000,
+      "table": {
+        "eps0.02_stratified": {
+          "cov": 1.0,
+          "mae": 0.6763
+        },
+        "eps0.02_topk": {
+          "cov": 0.6591,
+          "mae": 0.0923
+        },
+        "eps0.02_uniform": {
+          "cov": 0.997,
+          "mae": 0.6642
+        },
+        "eps0.05_stratified": {
+          "cov": 1.0,
+          "mae": 0.3615
+        },
+        "eps0.05_topk": {
+          "cov": 0.6591,
+          "mae": 0.3756
+        },
+        "eps0.05_uniform": {
+          "cov": 0.997,
+          "mae": 0.3725
+        },
+        "eps0.1_stratified": {
+          "cov": 1.0,
+          "mae": 0.2156
+        },
+        "eps0.1_topk": {
+          "cov": 0.6591,
+          "mae": 0.4899
+        },
+        "eps0.1_uniform": {
+          "cov": 0.997,
+          "mae": 0.2355
+        },
+        "eps0.5_stratified": {
+          "cov": 1.0,
+          "mae": 0.1718
+        },
+        "eps0.5_topk": {
+          "cov": 0.6591,
+          "mae": 0.5662
+        },
+        "eps0.5_uniform": {
+          "cov": 0.997,
+          "mae": 0.2006
+        }
+      },
+      "all_significant": false
+    },
+    "imdb": {
+      "encoder": null,
+      "k": 1000,
+      "table": {
+        "eps0.02_stratified": {
+          "cov": 1.0,
+          "mae": 1.2343
+        },
+        "eps0.02_topk": {
+          "cov": 0.8618,
+          "mae": 0.0903
+        },
+        "eps0.02_uniform": {
+          "cov": 0.9221,
+          "mae": 1.4087
+        },
+        "eps0.05_stratified": {
+          "cov": 1.0,
+          "mae": 0.6373
+        },
+        "eps0.05_topk": {
+          "cov": 0.8618,
+          "mae": 0.4249
+        },
+        "eps0.05_uniform": {
+          "cov": 0.9221,
+          "mae": 0.8882
+        },
+        "eps0.1_stratified": {
+          "cov": 1.0,
+          "mae": 0.32
+        },
+        "eps0.1_topk": {
+          "cov": 0.8618,
+          "mae": 0.5659
+        },
+        "eps0.1_uniform": {
+          "cov": 0.9221,
+          "mae": 0.6153
+        },
+        "eps0.5_stratified": {
+          "cov": 1.0,
+          "mae": 0.2159
+        },
+        "eps0.5_topk": {
+          "cov": 0.8618,
+          "mae": 0.5707
+        },
+        "eps0.5_uniform": {
+          "cov": 0.9221,
+          "mae": 0.5105
+        }
+      },
+      "all_significant": true
+    },
+    "imdb_mpnet": {
+      "encoder": "emb_mpnet.npy",
+      "k": 1000,
+      "table": {
+        "eps0.02_stratified": {
+          "cov": 1.0,
+          "mae": 1.2628
+        },
+        "eps0.02_topk": {
+          "cov": 0.8461,
+          "mae": 0.0907
+        },
+        "eps0.02_uniform": {
+          "cov": 0.9221,
+          "mae": 1.3977
+        },
+        "eps0.05_stratified": {
+          "cov": 1.0,
+          "mae": 0.6455
+        },
+        "eps0.05_topk": {
+          "cov": 0.8461,
+          "mae": 0.445
+        },
+        "eps0.05_uniform": {
+          "cov": 0.9221,
+          "mae": 0.8755
+        },
+        "eps0.1_stratified": {
+          "cov": 1.0,
+          "mae": 0.3215
+        },
+        "eps0.1_topk": {
+          "cov": 0.8461,
+          "mae": 0.5878
+        },
+        "eps0.1_uniform": {
+          "cov": 0.9221,
+          "mae": 0.6091
+        },
+        "eps0.5_stratified": {
+          "cov": 1.0,
+          "mae": 0.2155
+        },
+        "eps0.5_topk": {
+          "cov": 0.8461,
+          "mae": 0.6032
+        },
+        "eps0.5_uniform": {
+          "cov": 0.9221,
+          "mae": 0.5081
+        }
+      },
+      "all_significant": false
+    },
+    "stackexchange": {
+      "encoder": null,
+      "k": 1000,
+      "table": {
+        "eps0.02_stratified": {
+          "cov": 1.0,
+          "mae": 6.1522
+        },
+        "eps0.02_topk": {
+          "cov": 0.3114,
+          "mae": 1.2879
+        },
+        "eps0.02_uniform": {
+          "cov": 0.7601,
+          "mae": 6.6473
+        },
+        "eps0.05_stratified": {
+          "cov": 1.0,
+          "mae": 4.2074
+        },
+        "eps0.05_topk": {
+          "cov": 0.3114,
+          "mae": 4.1041
+        },
+        "eps0.05_uniform": {
+          "cov": 0.7601,
+          "mae": 4.7326
+        },
+        "eps0.1_stratified": {
+          "cov": 1.0,
+          "mae": 3.5007
+        },
+        "eps0.1_topk": {
+          "cov": 0.3114,
+          "mae": 5.0413
+        },
+        "eps0.1_uniform": {
+          "cov": 0.7601,
+          "mae": 4.0284
+        },
+        "eps0.5_stratified": {
+          "cov": 1.0,
+          "mae": 3.1863
+        },
+        "eps0.5_topk": {
+          "cov": 0.3114,
+          "mae": 5.2545
+        },
+        "eps0.5_uniform": {
+          "cov": 0.7601,
+          "mae": 3.7889
+        }
+      },
+      "all_significant": false
+    }
+  },
+  "rq2_cost": {
+    "amazon": {
+      "admitted": 1349709,
+      "facets": 33,
+      "latency": {
+        "exact_f64_ms": 70.05,
+        "exact_f32_ms": 40.65,
+        "topk100_ms": 70.54,
+        "topk1000_ms": 71.05,
+        "topk10000_ms": 70.9
+      },
+      "max_rel_err": {
+        "exact_f64_relerr": 3.333824189744107e-14,
+        "exact_f32_relerr": 2.2362505102864564e-07
+      }
+    },
+    "imdb": {
+      "admitted": 232828,
+      "facets": 28,
+      "latency": {
+        "exact_f64_ms": 24.22,
+        "exact_f32_ms": 9.36,
+        "topk100_ms": 12.13,
+        "topk1000_ms": 12.2,
+        "topk10000_ms": 12.38
+      },
+      "max_rel_err": {
+        "exact_f64_relerr": 8.402436656338163e-14,
+        "exact_f32_relerr": 2.3561796798200248e-07
+      }
+    },
+    "stackexchange": {
+      "admitted": 499708,
+      "facets": 150,
+      "latency": {
+        "exact_f64_ms": 38.76,
+        "exact_f32_ms": 20.48,
+        "topk100_ms": 25.96,
+        "topk1000_ms": 25.85,
+        "topk10000_ms": 26.14
+      },
+      "max_rel_err": {
+        "exact_f64_relerr": 2.188553268371267e-14,
+        "exact_f32_relerr": 8.654685307767982e-07
+      }
+    }
+  },
+  "rq2_indexed": {
+    "imdb": {
+      "iterative": null,
+      "latency": {
+        "pg_hnsw_topk100_ms": 1.88,
+        "pg_hnsw_topk1000_ms": 0.99,
+        "pg_hnsw_topk10000_ms": 0.84
+      },
+      "coverage": {
+        "pg_hnsw_topk100_coverage": 0.4661,
+        "pg_hnsw_topk1000_coverage": 0.475,
+        "pg_hnsw_topk10000_coverage": 0.475
+      }
+    },
+    "imdb_iter": {
+      "iterative": "relaxed_order",
+      "latency": {
+        "pg_hnsw_topk100_ms": 2.1,
+        "pg_hnsw_topk1000_ms": 16.3,
+        "pg_hnsw_topk10000_ms": 30.73
+      },
+      "coverage": {
+        "pg_hnsw_topk100_coverage": 0.4839,
+        "pg_hnsw_topk1000_coverage": 0.8554,
+        "pg_hnsw_topk10000_coverage": 0.9946
+      }
+    }
+  },
+  "rq3_maintenance": {
+    "amazon": {
+      "rescan_ms": 84.54,
+      "read_ms": 0.0061,
+      "insert_us": 0.7,
+      "delete_plain_us": 0.46,
+      "delete_anchor_us": 362.0,
+      "state_bytes": 792,
+      "churn_max_err": 1.2331452012390309e-14,
+      "speedup": 13795
+    },
+    "imdb": {
+      "rescan_ms": 13.95,
+      "read_ms": 0.006,
+      "insert_us": 0.79,
+      "delete_plain_us": 0.42,
+      "delete_anchor_us": 661.8,
+      "state_bytes": 672,
+      "churn_max_err": 7.695508317360218e-15,
+      "speedup": 2334
+    },
+    "stackexchange": {
+      "rescan_ms": 30.67,
+      "read_ms": 0.0266,
+      "insert_us": 0.72,
+      "delete_plain_us": 0.37,
+      "delete_anchor_us": 278.0,
+      "state_bytes": 3600,
+      "churn_max_err": 3.4798909011633427e-15,
+      "speedup": 1154
+    }
+  },
+  "rq4_contract": {
+    "amazon": {
+      "queries": 200,
+      "rows": [
+        {
+          "budget": 0.01,
+          "kstar": 32743.0,
+          "promise": 1.0,
+          "coverage": 1.0,
+          "topk_promise": 0.105,
+          "topk_coverage": 0.9673
+        },
+        {
+          "budget": 0.05,
+          "kstar": 16693.0,
+          "promise": 1.0,
+          "coverage": 1.0,
+          "topk_promise": 0.15,
+          "topk_coverage": 0.937
+        },
+        {
+          "budget": 0.2,
+          "kstar": 7705.0,
+          "promise": 1.0,
+          "coverage": 1.0,
+          "topk_promise": 0.235,
+          "topk_coverage": 0.8992
+        },
+        {
+          "budget": 0.5,
+          "kstar": 5137.0,
+          "promise": 1.0,
+          "coverage": 1.0,
+          "topk_promise": 0.255,
+          "topk_coverage": 0.8624
+        }
+      ]
+    },
+    "imdb": {
+      "queries": 200,
+      "rows": [
+        {
+          "budget": 0.01,
+          "kstar": 18593.0,
+          "promise": 1.0,
+          "coverage": 1.0,
+          "topk_promise": 0.235,
+          "topk_coverage": 0.96
+        },
+        {
+          "budget": 0.05,
+          "kstar": 8691.5,
+          "promise": 1.0,
+          "coverage": 1.0,
+          "topk_promise": 0.23,
+          "topk_coverage": 0.9284
+        },
+        {
+          "budget": 0.2,
+          "kstar": 3631.0,
+          "promise": 1.0,
+          "coverage": 1.0,
+          "topk_promise": 0.21,
+          "topk_coverage": 0.9046
+        },
+        {
+          "budget": 0.5,
+          "kstar": 1981.0,
+          "promise": 1.0,
+          "coverage": 1.0,
+          "topk_promise": 0.175,
+          "topk_coverage": 0.872
+        }
+      ]
+    },
+    "stackexchange": {
+      "queries": 200,
+      "rows": [
+        {
+          "budget": 0.01,
+          "kstar": 292747.0,
+          "promise": 1.0,
+          "coverage": 1.0,
+          "topk_promise": 0.09,
+          "topk_coverage": 0.9578
+        },
+        {
+          "budget": 0.05,
+          "kstar": 213560.0,
+          "promise": 1.0,
+          "coverage": 1.0,
+          "topk_promise": 0.16,
+          "topk_coverage": 0.9367
+        },
+        {
+          "budget": 0.2,
+          "kstar": 140429.5,
+          "promise": 1.0,
+          "coverage": 1.0,
+          "topk_promise": 0.24,
+          "topk_coverage": 0.9084
+        },
+        {
+          "budget": 0.5,
+          "kstar": 96910.0,
+          "promise": 1.0,
+          "coverage": 1.0,
+          "topk_promise": 0.245,
+          "topk_coverage": 0.8854
+        }
+      ]
+    }
+  },
+  "cross_checks": [
+    {
+      "quantity": "imdb: full exact pass",
+      "rq2_exact_f64_ms": 24.22,
+      "rq3_rescan_ms": 13.95,
+      "ratio": 1.74,
+      "note": "two independent implementations of the same computation; a ratio far from 1 would mean one of them is wrong"
+    },
+    {
+      "quantity": "stackexchange: full exact pass",
+      "rq2_exact_f64_ms": 38.76,
+      "rq3_rescan_ms": 30.67,
+      "ratio": 1.26,
+      "note": "two independent implementations of the same computation; a ratio far from 1 would mean one of them is wrong"
+    },
+    {
+      "quantity": "amazon: full exact pass",
+      "rq2_exact_f64_ms": 70.05,
+      "rq3_rescan_ms": 84.54,
+      "ratio": 1.21,
+      "note": "two independent implementations of the same computation; a ratio far from 1 would mean one of them is wrong"
+    }
+  ]
+}
