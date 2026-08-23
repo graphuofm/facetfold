@@ -40,8 +40,8 @@ test = ["pytest>=7", "hypothesis>=6"]
 bench = ["pytest-benchmark"]
 
 [project.urls]
-Repository = "https://github.com/graphuofm/facetfold"
-Changelog = "https://github.com/graphuofm/facetfold/blob/main/CHANGELOG.md"
+Repository = "https://anonymous.4open.science/r/facetfold-A01C"
+Changelog = "https://anonymous.4open.science/r/facetfold-A01C/engine/CHANGELOG.md"
 
 [tool.maturin]
 module-name = "bruce._bruce"
