@@ -32,7 +32,7 @@ STYLE = {"amazon": ("#0072B2", "o", "Amazon Reviews"),
          "imdb": ("#E69F00", "s", "IMDb"),
          "stackexchange": ("#CC79A7", "^", "StackExchange")}
 
-fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(7.0, 2.05))
+fig, ax1 = plt.subplots(1, 1, figsize=(3.4, 2.35))
 
 for name, c in S["corpora"].items():
     col, mk, lab = STYLE.get(name, ("0.3", "d", name))
@@ -42,22 +42,23 @@ for name, c in S["corpora"].items():
              lw=1.7, color=col, label=lab)
     ax1.plot(ks, [p["uniform_reference"] for p in c["points"]], ls=":",
              lw=1.4, color=col, alpha=0.85)
-    ax2.plot(ks, [p["top1"] for p in c["points"]], marker=mk, ms=4, lw=1.7,
-             color=col, label=lab)
 
 ax1.plot([], [], ls=":", lw=1.4, color=GREY, label="same $k$, drawn at random")
-for ax, ylab, title in ((ax1, "facet coverage", "(a) coverage, and what random retrieval would give"),
-                        (ax2, "picks the right top facet", "(b) whether the decision is right")):
+for ax, ylab, title in ((ax1, "facet coverage",
+                         "coverage, against a random draw"),):
     ax.axhline(1.0, color=GREEN, lw=1.6, ls="--", zorder=1,
                label="soft aggregation (exact)")
     ax.set_xscale("log")
+    # headroom above 1.0 is for the annotation, but coverage is a
+    # fraction: ticks above 1.0 would label impossible values
     ax.set_ylim(0, 1.34)
+    ax.set_yticks([0.0, 0.25, 0.50, 0.75, 1.00])
     ax.set_xlabel(r"retrieved items $k$", fontsize=8.5)
     ax.set_ylabel(ylab, fontsize=8.5)
     ax.set_title(title, fontsize=8, pad=6)
     ax.tick_params(labelsize=7.5)
     ax.grid(alpha=0.25, lw=0.5)
-    ax.legend(fontsize=5.8, loc="lower right", framealpha=0.93)
+    ax.legend(fontsize=5.2, loc="lower right", framealpha=0.93)
 
 worst = max((p for c in S["corpora"].values() for p in c["points"]),
             key=lambda p: p["concentration_gap_pp"])

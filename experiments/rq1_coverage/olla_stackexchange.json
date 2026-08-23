@@ -1,0 +1,83 @@
+{
+  "corpus": "stackexchange",
+  "n_admitted": 499708,
+  "n_facets": 150,
+  "n_queries": 200,
+  "strata": 1968,
+  "strata_rule": "H0 = K log N, capped",
+  "kmeans_seconds": 180.2,
+  "nominal_coverage": 0.95,
+  "estimator": "stratified ratio estimator with linearised variance and finite-population correction (stronger than the paper's Equation 1 applied to a ratio)",
+  "handicaps_removed": [
+    "true facet labels given for free (no LLM inference needed)",
+    "ratio estimator instead of a sample-mean interval"
+  ],
+  "results": [
+    {
+      "eps": 0.02,
+      "budget": 100,
+      "facets_answered": 150,
+      "rows_scored_per_query": 327.0,
+      "ci_coverage": 0.24373333333333333,
+      "half_width_median": 0.6477067711351778,
+      "abs_err_median": 3.18176976779416,
+      "abs_err_p95": 20.074220528835134,
+      "facet_coverage": 1.0
+    },
+    {
+      "eps": 0.02,
+      "budget": 1000,
+      "facets_answered": 150,
+      "rows_scored_per_query": 1081.0,
+      "ci_coverage": 0.29783333333333334,
+      "half_width_median": 1.0578725480595654,
+      "abs_err_median": 3.0578654289765748,
+      "abs_err_p95": 20.10565355422521,
+      "facet_coverage": 1.0
+    },
+    {
+      "eps": 0.02,
+      "budget": 10000,
+      "facets_answered": 150,
+      "rows_scored_per_query": 10005.0,
+      "ci_coverage": 0.41923333333333335,
+      "half_width_median": 1.9292942074544026,
+      "abs_err_median": 2.679862408810072,
+      "abs_err_p95": 17.819642335656827,
+      "facet_coverage": 1.0
+    },
+    {
+      "eps": 0.5,
+      "budget": 100,
+      "facets_answered": 150,
+      "rows_scored_per_query": 327.0,
+      "ci_coverage": 0.6012333333333333,
+      "half_width_median": 3.78247212562043,
+      "abs_err_median": 2.742727433280736,
+      "abs_err_p95": 14.028389841260761,
+      "facet_coverage": 1.0
+    },
+    {
+      "eps": 0.5,
+      "budget": 1000,
+      "facets_answered": 150,
+      "rows_scored_per_query": 1081.0,
+      "ci_coverage": 0.6788333333333333,
+      "half_width_median": 3.592606061188045,
+      "abs_err_median": 2.2239491202878314,
+      "abs_err_p95": 10.436558081593876,
+      "facet_coverage": 1.0
+    },
+    {
+      "eps": 0.5,
+      "budget": 10000,
+      "facets_answered": 150,
+      "rows_scored_per_query": 10005.0,
+      "ci_coverage": 0.8226,
+      "half_width_median": 2.233796003360556,
+      "abs_err_median": 1.0523389448382083,
+      "abs_err_p95": 5.490030821290967,
+      "facet_coverage": 1.0
+    }
+  ]
+}

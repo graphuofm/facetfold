@@ -1,0 +1,142 @@
+{
+  "corpus": "stackexchange",
+  "n_admitted": 499708,
+  "n_facets": 150,
+  "n_queries": 100,
+  "value_range": 8902.0,
+  "note": "frac_pre is the share of admitted rows a per-facet candidate generator would have to return for the PRE-EXECUTION tail bound to certify the budget without reading the rest; frac_true is what suffices when the true omitted mass is known, which today costs a full pass. speedup_if_indexed is 1/frac_pre, the scan reduction such a plan would achieve, before index overhead.",
+  "results": [
+    {
+      "eps": 0.02,
+      "budget_frac": 0.005,
+      "budget": 44.51,
+      "frac_pre_median": 0.07160381662891128,
+      "frac_true_median": 0.011110488525298775,
+      "conservatism_median": 6.150031534972458,
+      "declined_pre": 0.0,
+      "declined_true": 0.0,
+      "speedup_if_indexed": 13.965736005142395
+    },
+    {
+      "eps": 0.02,
+      "budget_frac": 0.01,
+      "budget": 89.02,
+      "frac_pre_median": 0.04697443306891225,
+      "frac_true_median": 0.00505094975465672,
+      "conservatism_median": 8.743359244591257,
+      "declined_pre": 0.0,
+      "declined_true": 0.0,
+      "speedup_if_indexed": 21.288176028287218
+    },
+    {
+      "eps": 0.02,
+      "budget_frac": 0.05,
+      "budget": 445.1,
+      "frac_pre_median": 0.01244026511482706,
+      "frac_true_median": 0.000628366966308324,
+      "conservatism_median": 16.03522515416607,
+      "declined_pre": 0.0,
+      "declined_true": 0.0,
+      "speedup_if_indexed": 80.38413898495938
+    },
+    {
+      "eps": 0.02,
+      "budget_frac": 0.1,
+      "budget": 890.2,
+      "frac_pre_median": 0.0058924411856524205,
+      "frac_true_median": 0.0003752191279707349,
+      "conservatism_median": 12.808469017893103,
+      "declined_pre": 0.0,
+      "declined_true": 0.0,
+      "speedup_if_indexed": 169.70894888775686
+    },
+    {
+      "eps": 0.05,
+      "budget_frac": 0.005,
+      "budget": 44.51,
+      "frac_pre_median": 0.5126453849047844,
+      "frac_true_median": 0.39462946360674633,
+      "conservatism_median": 1.2991705327103666,
+      "declined_pre": 0.0,
+      "declined_true": 0.0,
+      "speedup_if_indexed": 1.950666151389881
+    },
+    {
+      "eps": 0.05,
+      "budget_frac": 0.01,
+      "budget": 89.02,
+      "frac_pre_median": 0.38920729706148394,
+      "frac_true_median": 0.2742561656007108,
+      "conservatism_median": 1.4254935042402102,
+      "declined_pre": 0.0,
+      "declined_true": 0.0,
+      "speedup_if_indexed": 2.5693249010231884
+    },
+    {
+      "eps": 0.05,
+      "budget_frac": 0.05,
+      "budget": 445.1,
+      "frac_pre_median": 0.15076704795600632,
+      "frac_true_median": 0.07743422158540589,
+      "conservatism_median": 1.9251263389822817,
+      "declined_pre": 0.0,
+      "declined_true": 0.0,
+      "speedup_if_indexed": 6.6327490891232355
+    },
+    {
+      "eps": 0.05,
+      "budget_frac": 0.1,
+      "budget": 890.2,
+      "frac_pre_median": 0.08474649195129956,
+      "frac_true_median": 0.03462922346650443,
+      "conservatism_median": 2.527895768075149,
+      "declined_pre": 0.0,
+      "declined_true": 0.0,
+      "speedup_if_indexed": 11.79989846157479
+    },
+    {
+      "eps": 0.5,
+      "budget_frac": 0.005,
+      "budget": 44.51,
+      "frac_pre_median": 0.784588199508513,
+      "frac_true_median": 0.7766495633449935,
+      "conservatism_median": 1.0102782285694865,
+      "declined_pre": 0.0,
+      "declined_true": 0.0,
+      "speedup_if_indexed": 1.2745539642661292
+    },
+    {
+      "eps": 0.5,
+      "budget_frac": 0.01,
+      "budget": 89.02,
+      "frac_pre_median": 0.6445964443234848,
+      "frac_true_median": 0.6347857148574767,
+      "conservatism_median": 1.0152855590976766,
+      "declined_pre": 0.0,
+      "declined_true": 0.0,
+      "speedup_if_indexed": 1.551358231659992
+    },
+    {
+      "eps": 0.5,
+      "budget_frac": 0.05,
+      "budget": 445.1,
+      "frac_pre_median": 0.3173083080519023,
+      "frac_true_median": 0.30991198860134317,
+      "conservatism_median": 1.024083730540544,
+      "declined_pre": 0.0,
+      "declined_true": 0.0,
+      "speedup_if_indexed": 3.1515090359261233
+    },
+    {
+      "eps": 0.5,
+      "budget_frac": 0.1,
+      "budget": 890.2,
+      "frac_pre_median": 0.20098437487492696,
+      "frac_true_median": 0.19288564521680662,
+      "conservatism_median": 1.0411993126347565,
+      "declined_pre": 0.0,
+      "declined_true": 0.0,
+      "speedup_if_indexed": 4.975511159125192
+    }
+  ]
+}

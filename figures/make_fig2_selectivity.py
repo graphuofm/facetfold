@@ -45,7 +45,7 @@ a.plot(sel, [r["ann_coverage"] * 100 for r in R], "o--", color="#c44e52",
 a.plot(sel, [r["iter_coverage"] * 100 for r in R], "s-", color="#4c72b0",
        label="facet coverage, iterative scan")
 a.set_xscale("log")
-a.set_xlabel("predicate selectivity (\\% of rows admitted)")
+a.set_xlabel("predicate selectivity (% of rows admitted)")
 a.set_ylabel("percent")
 a.set_ylim(-3, 105)
 a.set_title("(a) what the index returns", fontsize=9)
@@ -61,7 +61,7 @@ b.plot(sel, [r["exact_ms"] for r in R], "^-", color="#55a868",
        label="exact pass")
 b.set_xscale("log")
 b.set_yscale("log")
-b.set_xlabel("predicate selectivity (\\% of rows admitted)")
+b.set_xlabel("predicate selectivity (% of rows admitted)")
 b.set_ylabel("latency (ms)")
 b.set_title("(b) what it costs", fontsize=9)
 b.legend(fontsize=6.5, frameon=False, loc="upper left")

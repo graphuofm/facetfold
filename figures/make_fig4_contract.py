@@ -84,9 +84,13 @@ ax2.set_xlabel("planning sample size (rows)", fontsize=8.5)
 ax2.set_ylabel("$k_\\mathrm{plan}\\,/\\,k_\\mathrm{oracle}$", fontsize=8.5)
 ax2.set_title("(b) how good the proposal is", fontsize=8.5, pad=6)
 ax2.tick_params(labelsize=7.5); ax2.grid(alpha=0.25, lw=0.5, which="both")
-ax2.set_xticks(sorted(A[cs[0]]["sample"].unique()))
-ax2.set_xticklabels([str(x) for x in sorted(A[cs[0]]["sample"].unique())],
-                    fontsize=7.5)
+# the panel is one column wide, so the tick labels collide unless they
+# are shrunk and the crowded end is thinned out
+_ticks = sorted(A[cs[0]]["sample"].unique())
+ax2.set_xticks(_ticks)
+ax2.set_xticklabels([str(x) for x in _ticks], fontsize=6, rotation=45,
+                    ha="right")
+ax2.tick_params(axis="x", pad=1)
 ax2.legend(fontsize=6, loc="upper right", framealpha=0.93)
 ax2.text(0.03, 0.06, "below 1 = the proposal\nunder-reads; repair\ncarries the guarantee",
          fontsize=6, ha="left", va="bottom", transform=ax2.transAxes,

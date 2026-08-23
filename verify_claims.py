@@ -180,6 +180,18 @@ check("stackexchange topk worst", 16.8, B[(0.02, "topk")]["max_abs"], 0.08)
 for c in ("amazon", "stackexchange", "imdb"):
     b = load(f"rq1_coverage/baselines_{c}.json")
     check(f"{c} baselines n_queries", 200, b["n_queries"], 0.001)
+    # Who is most accurate at each temperature. The paper and the table
+    # caption both used to assert that per-facet top-b wins everywhere;
+    # it wins at the sharp setting and LOSES to stratified sampling at
+    # the diffuse one on every corpus, which is the interesting half.
+    t = {(x["eps"], x["method"]): x["mae"] for x in b["results"]}
+    for eps, want in ((0.02, "perfacet"), (0.5, "stratified")):
+        cand = [(v, m) for (e, m), v in t.items() if e == eps]
+        checks += 1
+        got = min(cand)[1]
+        if got != want:
+            fails.append(f"{c} at eps={eps}: lowest MAE is {got!r}, "
+                         f"paper says {want!r}")
 
 # ---- SQL forms ----
 sq = load("rq2_cost/sql_baselines_imdb.json")
@@ -242,12 +254,84 @@ for c in ("amazon", "stackexchange", "imdb"):
 check("largest coverage change when the source item is removed (pp)",
       0.23, worst, 0.15)
 
+# ---- error bars that cannot be believed (Section 7.8) ----
+# Every number the new subsection quotes, pinned to its result file.
+bt, ol, cert = {}, {}, []
+for c in ("imdb", "amazon", "stackexchange"):
+    b = load(f"rq4_contract/bootstrap_{c}.json")
+    for r in b["results"]:
+        bt[(c, r["method"], r["eps"], r["k"])] = r
+    o = load(f"rq1_coverage/olla_{c}.json")
+    for r in o["results"]:
+        ol[(c, r["eps"], r["budget"])] = r
+    # the contract, evaluated on the same pairs the bootstrap used
+    d = pd.read_parquet(E / "rq4_contract" / f"bootstrap_per_facet_{c}.parquet")
+    d = d[(d.method == "perfacet_topk") & (d.k == 1000)]
+    for eps in (0.02, 0.5):
+        sub = d[d.eps == eps]
+        cert.append(float((sub.abs_err <= sub.certified_bound * (1 + 1e-9)).mean()))
+
+CORPORA = ("imdb", "amazon", "stackexchange")
+boot_sharp = [bt[(c, "perfacet_topk", 0.02, 1000)]["ci_coverage"] for c in CORPORA]
+boot_diff = [bt[(c, "perfacet_topk", 0.5, 1000)]["ci_coverage"] for c in CORPORA]
+check("bootstrap coverage, sharp, low", 0.96, min(boot_sharp), 0.02)
+check("bootstrap coverage, sharp, high", 1.00, max(boot_sharp), 0.02)
+check("bootstrap coverage, diffuse, low", 0.47, min(boot_diff), 0.05)
+check("bootstrap coverage, diffuse, high", 0.86, max(boot_diff), 0.03)
+
+ess = [bt[(c, "perfacet_topk", 0.02, k)]["ess_median"]
+       for c in CORPORA for k in (100, 1000)]
+check("effective sample size, low", 1.0, min(ess), 0.02)
+check("effective sample size, high", 3.6, max(ess), 0.05)
+
+# the Bayesian bootstrap must not rescue the coverage
+for c in CORPORA:
+    for eps in (0.02, 0.5):
+        a_, b_ = (bt[(c, "perfacet_topk", eps, 1000)]["ci_coverage"],
+                  bt[(c, "perfacet_bayes", eps, 1000)]["ci_coverage"])
+        checks += 1
+        if abs(a_ - b_) > 0.05:
+            fails.append(f"{c} eps={eps}: Bayesian bootstrap coverage {b_:.2f} "
+                         f"differs from the percentile bootstrap {a_:.2f}; "
+                         "the paper says the resampler does not matter")
+
+olla_sharp = [ol[(c, 0.02, 1000)]["ci_coverage"] for c in CORPORA]
+olla_diff = [ol[(c, 0.5, 1000)]["ci_coverage"] for c in CORPORA]
+check("stratified sampling coverage, sharp, low", 0.29, min(olla_sharp), 0.05)
+check("stratified sampling coverage, sharp, high", 0.39, max(olla_sharp), 0.05)
+check("stratified sampling coverage, diffuse, low", 0.68, min(olla_diff), 0.05)
+check("stratified sampling coverage, diffuse, high", 0.83, max(olla_diff), 0.03)
+check("stratified sampling, Amazon at 10x the budget", 0.94,
+      ol[("amazon", 0.5, 10000)]["ci_coverage"], 0.03)
+for c in CORPORA:
+    checks += 1
+    if ol[(c, 0.02, 1000)]["facet_coverage"] != 1.0:
+        fails.append(f"{c}: stratified sampling lost a facet; the paper "
+                     "says it never does")
+
+checks += 1
+if any(x != 1.0 for x in cert):
+    fails.append(f"the deterministic bound did not hold on every pair: {cert}")
+# and it is the narrower of the two on exactly two corpora at the sharp setting
+narrower = sum(1 for c in CORPORA
+               if bt[(c, "perfacet_topk", 0.02, 1000)]["certified_bound_median"]
+               < bt[(c, "perfacet_topk", 0.02, 1000)]["half_width_median"])
+check("corpora where the bound is narrower at the sharp setting", 2, narrower, 0.01)
+ratio = max(bt[(c, "perfacet_topk", 0.02, 1000)]["half_width_median"]
+            / bt[(c, "perfacet_topk", 0.02, 1000)]["certified_bound_median"]
+            for c in CORPORA
+            if bt[(c, "perfacet_topk", 0.02, 1000)]["certified_bound_median"]
+            < bt[(c, "perfacet_topk", 0.02, 1000)]["half_width_median"])
+check("largest width advantage of the bound", 33, ratio, 0.05)
+
 # ---- claims that must be present verbatim ----
 in_text("nDCG@10 of 0.739")
 in_text("792 bytes")
 in_text("0.74\\% of Amazon's 1.35M admitted rows")
 in_text("709.78")
 in_text("24 cores")
+in_text("rather than running its system")
+in_text("$1/\\sum_i p_i^2$")
 # the stale figures this script was extended to catch
 for stale in ("7 of 28", "1.2M-review", "17--26", "32-core",
               "exact at every temperature", "beyond $10^{300}$",
