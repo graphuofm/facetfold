@@ -1,0 +1,36 @@
+{
+  "corpus": "amazon",
+  "n_admitted": 1349709,
+  "n_facets": 33,
+  "k": 1000,
+  "b": 30,
+  "n_queries": 30,
+  "reps": 3,
+  "threads": 8,
+  "build_seconds": {
+    "per_facet_indexes": 0.9,
+    "global_index": 0.5
+  },
+  "note": "ratios are to the exact pass timed in the same loop; absolute exact-pass latency under the quiet guard is in RQ2. Coverage is the share of facets represented.",
+  "exact_coverage": 0.6545454545454545,
+  "results": [
+    {
+      "method": "per_facet_index",
+      "ratio_to_exact": 1.3901642435830972,
+      "ms_median": 64.97561931610107,
+      "coverage": 1.0
+    },
+    {
+      "method": "scan_partition",
+      "ratio_to_exact": 1.0009022166637371,
+      "ms_median": 48.033829778432846,
+      "coverage": 1.0
+    },
+    {
+      "method": "global_overfetch",
+      "ratio_to_exact": 1.3702601271925308,
+      "ms_median": 61.46335229277611,
+      "coverage": 0.6545454545454545
+    }
+  ]
+}

@@ -119,7 +119,10 @@ for Q in a.qs:
     else:
         rebuild_ms = float("nan")
 
-    payload = G * Q * (3 * 8 + 8)
+    # 40 bytes per (query, facet): three f64 accumulators plus the
+    # live-row and anchor-multiplicity counters, which is
+    # size_of::<GroupState>() in the engine.
+    payload = G * Q * 40
     rec = dict(corpus=a.corpus, Q=Q, n_facets=G, n_admitted=N,
                facet_rows=int(len(pool)), build_seconds=round(build_s, 2),
                insert_us=ins_us, delete_us=del_us,
@@ -140,7 +143,8 @@ summary = dict(machine_conditions=QUIET, corpus=a.corpus, n_admitted=N,
                n_facets=G, dim=d, eps=a.eps, reps=a.reps,
                note="per-edit cost of maintaining Q standing queries, "
                     "measured through the same engine path as RQ3. "
-                    "Aggregate-state only: excludes encoding the text, "
+                    "Payload is 40 B per (query, facet), the engine's "
+                    "GroupState. Aggregate-state only: excludes encoding the text, "
                     "writing the base relation, and vector-index "
                     "maintenance.",
                results=rows)

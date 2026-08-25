@@ -32,7 +32,7 @@ STYLE = {"amazon": ("#0072B2", "o", "Amazon Reviews"),
          "imdb": ("#E69F00", "s", "IMDb"),
          "stackexchange": ("#CC79A7", "^", "StackExchange")}
 
-fig, ax1 = plt.subplots(1, 1, figsize=(3.4, 2.02))
+fig, ax1 = plt.subplots(1, 1, figsize=(3.4, 2.0))
 
 for name, c in S["corpora"].items():
     col, mk, lab = STYLE.get(name, ("0.3", "d", name))

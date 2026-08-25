@@ -81,7 +81,8 @@ temperatures the methods cross over and {n_cross} accuracy comparisons
 become indistinguishable.}}
 \\label{{tab:baselines}}
 \\footnotesize
-\\setlength{{\\tabcolsep}}{{2.5pt}}
+\\setlength{{\\tabcolsep}}{{2pt}}
+\\renewcommand{{\\arraystretch}}{{0.92}}
 \\begin{{tabular}}{{llcccccc}}
 \\toprule
 & & \\multicolumn{{3}}{{c}}{{sharp ($\\eps=0.02$)}}

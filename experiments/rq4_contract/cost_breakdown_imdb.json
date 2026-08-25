@@ -1,0 +1,33 @@
+{
+  "machine_conditions": {
+    "guard": "bypassed",
+    "cpu_busy_fraction": 0.07661038148843025,
+    "gpu_utilisation_pct": 100,
+    "note": "shares are reported; absolute milliseconds from this run are not quoted in the paper"
+  },
+  "corpus": "imdb",
+  "n_admitted": 232828,
+  "n_facets": 28,
+  "eps": 0.02,
+  "budget_frac": 0.01,
+  "budget": 0.09,
+  "n_queries": 50,
+  "reps": 3,
+  "sketch": 1024,
+  "note": "median milliseconds per stage of one certified answer; exact_ms is the single-pass plan for reference. Shares are of the certified total.",
+  "stages_ms": {
+    "planning": 0.41939690709114075,
+    "scoring": 17.730340361595154,
+    "accumulation": 3.353191539645195,
+    "repair": 0.19002333283424377
+  },
+  "certified_total_ms": 21.692952141165733,
+  "shares": {
+    "planning": 0.019333325605567084,
+    "scoring": 0.8173318341466808,
+    "accumulation": 0.1545751596105721,
+    "repair": 0.008759680637180087
+  },
+  "exact_ms": 20.834971219301224,
+  "facets_repaired_median": 9.0
+}

@@ -35,7 +35,7 @@ d = json.load(open(EXP / "selectivity_imdb.json"))
 R = sorted(d["results"], key=lambda r: r["target_selectivity"])
 sel = [r["target_selectivity"] * 100 for r in R]
 
-fig, ax = plt.subplots(1, 2, figsize=(3.4, 2.2))
+fig, ax = plt.subplots(1, 2, figsize=(3.4, 2.08))
 
 a = ax[0]
 a.plot(sel, [r["ann_fill"] * 100 for r in R], "o-", color="#c44e52",
@@ -45,10 +45,9 @@ a.plot(sel, [r["ann_coverage"] * 100 for r in R], "o--", color="#c44e52",
 a.plot(sel, [r["iter_coverage"] * 100 for r in R], "s-", color="#4c72b0",
        label="facet coverage, iterative scan")
 a.set_xscale("log")
-a.set_xlabel("predicate selectivity (% of rows admitted)")
 a.set_ylabel("percent")
 a.set_ylim(-3, 105)
-a.set_title("(a) what the index returns", fontsize=9)
+a.set_title("(a) what the index returns", fontsize=8, pad=4)
 a.legend(fontsize=5.4, frameon=False, loc="center right")
 a.grid(alpha=0.25)
 
@@ -61,19 +60,23 @@ b.plot(sel, [r["exact_ms"] for r in R], "^-", color="#55a868",
        label="exact pass")
 b.set_xscale("log")
 b.set_yscale("log")
-b.set_xlabel("predicate selectivity (% of rows admitted)")
 b.set_ylabel("latency (ms)")
-b.set_title("(b) what it costs", fontsize=9)
+b.set_title("(b) what it costs", fontsize=8, pad=4)
 b.legend(fontsize=5.4, frameon=False, loc="upper left")
 b.grid(alpha=0.25, which="both")
 
+# thin the ticks: six log-spaced labels collide at column width
+SHOW = {1, 5, 25, 100}
 for x in ax:
     x.set_xticks(sel)
-    x.set_xticklabels([f"{s:g}" for s in sel], fontsize=7)
-    x.tick_params(labelsize=7)
+    x.set_xticklabels([f"{s:g}" if s in SHOW else "" for s in sel],
+                      fontsize=6.5)
+    x.tick_params(labelsize=6.5, length=2, pad=1.5)
     x.xaxis.set_minor_locator(matplotlib.ticker.NullLocator())
+fig.supxlabel("predicate selectivity (% of rows admitted)", fontsize=7.5,
+              y=0.02)
 
-fig.tight_layout()
+fig.tight_layout(rect=(0, 0.045, 1, 1), pad=0.35)
 fig.savefig(OUT, bbox_inches="tight")
 print(f"wrote {OUT}")
 worst = max(R, key=lambda r: r["iter_ms"] / r["exact_ms"])

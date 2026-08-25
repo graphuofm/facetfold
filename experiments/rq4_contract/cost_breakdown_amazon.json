@@ -1,0 +1,33 @@
+{
+  "machine_conditions": {
+    "guard": "bypassed",
+    "cpu_busy_fraction": 0.07692307692307687,
+    "gpu_utilisation_pct": 97,
+    "note": "shares are reported; absolute milliseconds from this run are not quoted in the paper"
+  },
+  "corpus": "amazon",
+  "n_admitted": 1349709,
+  "n_facets": 33,
+  "eps": 0.02,
+  "budget_frac": 0.01,
+  "budget": 0.04,
+  "n_queries": 50,
+  "reps": 3,
+  "sketch": 1024,
+  "note": "median milliseconds per stage of one certified answer; exact_ms is the single-pass plan for reference. Shares are of the certified total.",
+  "stages_ms": {
+    "planning": 0.5642902106046677,
+    "scoring": 78.12644354999065,
+    "accumulation": 17.111264169216156,
+    "repair": 2.162367105484009
+  },
+  "certified_total_ms": 97.96436503529549,
+  "shares": {
+    "planning": 0.005760157894162434,
+    "scoring": 0.7974985957581877,
+    "accumulation": 0.17466824965436314,
+    "repair": 0.022072996693286703
+  },
+  "exact_ms": 98.67103211581707,
+  "facets_repaired_median": 9.5
+}

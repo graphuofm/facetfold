@@ -1,0 +1,36 @@
+{
+  "corpus": "stackexchange",
+  "n_admitted": 499708,
+  "n_facets": 150,
+  "k": 1000,
+  "b": 6,
+  "n_queries": 30,
+  "reps": 3,
+  "threads": 8,
+  "build_seconds": {
+    "per_facet_indexes": 0.3,
+    "global_index": 0.2
+  },
+  "note": "ratios are to the exact pass timed in the same loop; absolute exact-pass latency under the quiet guard is in RQ2. Coverage is the share of facets represented.",
+  "exact_coverage": 0.32822222222222225,
+  "results": [
+    {
+      "method": "per_facet_index",
+      "ratio_to_exact": 1.070328021584507,
+      "ms_median": 27.426283806562424,
+      "coverage": 1.0
+    },
+    {
+      "method": "scan_partition",
+      "ratio_to_exact": 1.1178583213592064,
+      "ms_median": 27.276335284113884,
+      "coverage": 1.0
+    },
+    {
+      "method": "global_overfetch",
+      "ratio_to_exact": 0.9144928931250579,
+      "ms_median": 23.529015481472015,
+      "coverage": 0.32822222222222225
+    }
+  ]
+}

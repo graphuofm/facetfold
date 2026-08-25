@@ -6,7 +6,7 @@
   "dim": 384,
   "eps": 0.05,
   "reps": 200,
-  "note": "per-edit cost of maintaining Q standing queries, measured through the same engine path as RQ3. Aggregate-state only: excludes encoding the text, writing the base relation, and vector-index maintenance.",
+  "note": "per-edit cost of maintaining Q standing queries, measured through the same engine path as RQ3. Payload is 40 B per (query, facet), the engine's GroupState. Aggregate-state only: excludes encoding the text, writing the base relation, and vector-index maintenance.",
   "results": [
     {
       "corpus": "amazon",
@@ -15,14 +15,14 @@
       "n_admitted": 1349709,
       "facet_rows": 20,
       "build_seconds": 0.0,
-      "insert_us": 0.21792948246002197,
-      "delete_us": 0.2216547727584839,
-      "insert_us_per_query": 0.21792948246002197,
-      "read_us": 0.27008354663848877,
-      "rebuild_all_ms": 117.88530647754669,
+      "insert_us": 0.22351741790771484,
+      "delete_us": 0.21979212760925293,
+      "insert_us_per_query": 0.22351741790771484,
+      "read_us": 0.25331974029541016,
+      "rebuild_all_ms": 124.79384243488312,
       "rebuild_fits_in_memory": true,
-      "payload_bytes": 1056,
-      "breakeven_edits_per_rebuild": 540933.264957265
+      "payload_bytes": 1320,
+      "breakeven_edits_per_rebuild": 558318.2
     },
     {
       "corpus": "amazon",
@@ -31,14 +31,14 @@
       "n_admitted": 1349709,
       "facet_rows": 20,
       "build_seconds": 0.0,
-      "insert_us": 3.0566006898880005,
-      "delete_us": 3.082677721977234,
-      "insert_us_per_query": 0.30566006898880005,
-      "read_us": 2.6673078536987305,
-      "rebuild_all_ms": 572.1923634409904,
+      "insert_us": 3.1515955924987793,
+      "delete_us": 3.1776726245880127,
+      "insert_us_per_query": 0.31515955924987793,
+      "read_us": 2.728775143623352,
+      "rebuild_all_ms": 634.8824016749859,
       "rebuild_fits_in_memory": true,
-      "payload_bytes": 10560,
-      "breakeven_edits_per_rebuild": 187198.92504570383
+      "payload_bytes": 13200,
+      "breakeven_edits_per_rebuild": 201447.9278959811
     },
     {
       "corpus": "amazon",
@@ -47,14 +47,14 @@
       "n_admitted": 1349709,
       "facet_rows": 20,
       "build_seconds": 0.0,
-      "insert_us": 15.408731997013092,
-      "delete_us": 14.974735677242279,
-      "insert_us_per_query": 0.15408731997013092,
-      "read_us": 10.97656786441803,
-      "rebuild_all_ms": 3217.4637988209724,
+      "insert_us": 15.706755220890045,
+      "delete_us": 15.196390450000763,
+      "insert_us_per_query": 0.15706755220890045,
+      "read_us": 10.82196831703186,
+      "rebuild_all_ms": 3372.7653212845325,
       "rebuild_fits_in_memory": true,
-      "payload_bytes": 105600,
-      "breakeven_edits_per_rebuild": 208807.8239951647
+      "payload_bytes": 132000,
+      "breakeven_edits_per_rebuild": 214733.42353987548
     },
     {
       "corpus": "amazon",
@@ -63,13 +63,13 @@
       "n_admitted": 1349709,
       "facet_rows": 20,
       "build_seconds": 0.0,
-      "insert_us": 169.89931464195251,
-      "delete_us": 170.1023429632187,
-      "insert_us_per_query": 0.16989931464195251,
-      "read_us": 103.06946933269501,
+      "insert_us": 166.52420163154602,
+      "delete_us": 177.71683633327484,
+      "insert_us_per_query": 0.16652420163154602,
+      "read_us": 107.71490633487701,
       "rebuild_all_ms": NaN,
       "rebuild_fits_in_memory": false,
-      "payload_bytes": 1056000,
+      "payload_bytes": 1320000,
       "breakeven_edits_per_rebuild": NaN
     }
   ]

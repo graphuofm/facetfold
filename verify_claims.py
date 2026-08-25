@@ -253,17 +253,23 @@ check("iterative coverage high (%)", 89, hi_cov * 100, 0.03)
 # ---- Q standing queries ----
 qs = load("rq3_maintenance/qscaling_amazon.json")
 Q = {r["Q"]: r for r in qs["results"]}
-QCLAIMS = {1: 0.22, 10: 3.1, 100: 15.4, 1000: 170.0}
+QCLAIMS = {1: 0.22, 10: 3.2, 100: 15.7, 1000: 167.0}
 for q, us in QCLAIMS.items():
     checks += 1
     if q not in Q:
         fails.append(f"Q-scaling has no measurement at Q={q}")
     else:
         check(f"insert us at Q={q}", us, Q[q]["insert_us"], 0.40)
-check("payload MiB at Q=1000", 1.0, Q[1000]["payload_bytes"] / 1024**2, 0.02)
-check("rebuild ms at Q=1", 118, Q[1]["rebuild_all_ms"], 0.30)
-check("rebuild ms at Q=10", 572, Q[10]["rebuild_all_ms"], 0.30)
-check("rebuild ms at Q=100", 3217, Q[100]["rebuild_all_ms"], 0.30)
+check("payload MiB at Q=1000", 1.3, Q[1000]["payload_bytes"] / 1024**2, 0.05)
+# the state size the paper reports must be the engine's GroupState:
+# three f64 accumulators plus the live-row and multiplicity counters
+check("bytes per (query, facet)", 40,
+      Q[1000]["payload_bytes"] / (Q[1000]["n_facets"] * 1000), 0.001)
+check("Amazon maintained state, bytes", 1320,
+      Q[1][ "payload_bytes"], 0.001)
+check("rebuild ms at Q=1", 125, Q[1]["rebuild_all_ms"], 0.30)
+check("rebuild ms at Q=10", 635, Q[10]["rebuild_all_ms"], 0.30)
+check("rebuild ms at Q=100", 3373, Q[100]["rebuild_all_ms"], 0.30)
 checks += 1
 if Q[1000]["rebuild_fits_in_memory"]:
     fails.append("the paper says the batched rebuild stops fitting at Q=1000")
@@ -350,13 +356,115 @@ ratio = max(bt[(c, "perfacet_topk", 0.02, 1000)]["half_width_median"]
             < bt[(c, "perfacet_topk", 0.02, 1000)]["half_width_median"])
 check("largest width advantage of the bound", 33, ratio, 0.05)
 
+# ---- cost decomposition and the two P2 experiments ----
+sh = {}
+for c in ("imdb", "stackexchange", "amazon"):
+    d = load(f"rq4_contract/cost_breakdown_{c}.json")
+    sh[c] = d["shares"]
+check("scoring share, low", 0.797, min(x["scoring"] for x in sh.values()), 0.03)
+check("scoring share, high", 0.817, max(x["scoring"] for x in sh.values()), 0.03)
+check("accumulation share, low", 0.155, min(x["accumulation"] for x in sh.values()), 0.06)
+check("accumulation share, high", 0.181, max(x["accumulation"] for x in sh.values()), 0.06)
+checks += 1
+if max(x["planning"] for x in sh.values()) >= 0.02:
+    fails.append("planning exceeded the 2% share the paper claims")
+checks += 1
+if max(x["repair"] for x in sh.values()) >= 0.03:
+    fails.append("repair exceeded the 3% share the paper claims")
+
+bt = load("rq4_contract/bound_tightness.json")
+check("bound attained under the adversarial instance", 1.0,
+      bt["adversarial_max_ratio"], 0.001)
+checks += 1
+if bt["natural_min_ratio"] < 10:
+    fails.append("the natural regime was not far from the bound after all")
+
+lx = load("rq1_coverage/lexical_amazon.json")
+L = {(r["k"], r["retriever"]): r for r in lx["results"]}
+check("dense concentration gap at k=100 (pp)", 58, L[(100, "dense")]["gap_pp"], 0.05)
+check("hybrid concentration gap at k=100 (pp)", 45, L[(100, "hybrid")]["gap_pp"], 0.05)
+check("bm25 concentration gap at k=100 (pp)", 33, L[(100, "bm25")]["gap_pp"], 0.06)
+checks += 1
+if not (L[(100, "bm25")]["gap_pp"] < L[(100, "hybrid")]["gap_pp"]
+        < L[(100, "dense")]["gap_pp"]):
+    fails.append("the paper's ordering bm25 < hybrid < dense does not hold")
+
+# ---- what coverage costs to buy with retrieval (P2.14) ----
+gl = {}
+for c in ("imdb", "stackexchange", "amazon"):
+    d = load(f"rq2_cost/grouped_latency_{c}.json")
+    gl[c] = {r["method"]: r for r in d["results"]}
+    checks += 1
+    if gl[c]["per_facet_index"]["coverage"] != 1.0:
+        fails.append(f"{c}: per-facet index did not reach full coverage")
+    checks += 1
+    if gl[c]["scan_partition"]["coverage"] != 1.0:
+        fails.append(f"{c}: scan+partition did not reach full coverage")
+pf = [gl[c]["per_facet_index"]["ratio_to_exact"] for c in gl]
+sp = [gl[c]["scan_partition"]["ratio_to_exact"] for c in gl]
+check("per-facet index, cheapest", 1.07, min(pf), 0.05)
+check("per-facet index, dearest", 1.39, max(pf), 0.05)
+check("scan+partition, cheapest", 1.00, min(sp), 0.05)
+check("scan+partition, dearest", 1.12, max(sp), 0.05)
+
+# ---- the pre-execution bound's headroom, now claimed in Sections 5 and 7 ----
+cp_ = {}
+for c in ("imdb", "stackexchange", "amazon"):
+    d = load(f"rq4_contract/certified_perfacet_{c}.json")
+    sharp = [r for r in d["results"] if r["eps"] == 0.02]
+    cp_[c] = sharp
+    checks += 1
+    if any(r["declined_pre"] != 0.0 for r in sharp):
+        fails.append(f"{c}: the pre-execution plan declined a facet; "
+                     "the paper says it declines none")
+fr = [r["frac_pre_median"] for v in cp_.values() for r in v]
+check("pre-execution plan, rows read, low (%)", 0.6, min(fr) * 100, 0.15)
+check("pre-execution plan, rows read, high (%)", 9.3, max(fr) * 100, 0.10)
+sp = [r["speedup_if_indexed"] for v in cp_.values() for r in v]
+check("scan reduction, low", 11, min(sp), 0.10)
+check("scan reduction, high", 170, max(sp), 0.10)
+
+# ---- a second engine and index family (W2) ----
+fs = load("rq2_cost/faiss_selectivity_imdb.json")
+comp = fs["completeness"]
+checks += 1
+if any(c["setting"] is not None for c in comp):
+    fails.append("some FAISS configuration did reach 99% coverage; the "
+                 "paper says none did")
+best = [c["best_coverage"] for c in comp]
+ceil = [c["exact_topk_coverage"] for c in comp]
+check("FAISS plateau, low", 0.862, min(best), 0.02)
+check("FAISS plateau, high", 0.891, max(best), 0.02)
+check("exact top-k ceiling at 5%", 0.884,
+      [c["exact_topk_coverage"] for c in comp
+       if c["target_selectivity"] == 0.05][0], 0.02)
+check("exact top-k ceiling at 25%", 0.861,
+      [c["exact_topk_coverage"] for c in comp
+       if c["target_selectivity"] == 0.25][0], 0.02)
+# the plateau must actually BE the ceiling, which is the paper's point
+checks += 1
+if max(b - c for b, c in zip(best, ceil)) > 0.02:
+    fails.append("the FAISS plateau is not the exact top-k ceiling after all")
+T = fs["tuning"]
+w = max((r for r in T if r["index"] == "hnsw" and r["target_selectivity"] == 0.05),
+        key=lambda r: r["setting"])
+check("HNSW at the widest setting, x exact", 631, w["ratio_to_exact"], 0.10)
+check("HNSW gain over the ceiling (pp)", 0.36,
+      (w["coverage"] - w["exact_topk_coverage"]) * 100, 0.40)
+
 # ---- claims that must be present verbatim ----
 in_text("nDCG@10 of 0.739")
-in_text("792 bytes")
+in_text("40 bytes per facet")
+in_text("1320 bytes")
+in_text("80--82\\%")
+in_text("Generative-AI tools were used for")
 in_text("0.74\\% of Amazon's 1.35M admitted rows")
 in_text("709.78")
 in_text("24 cores")
-in_text("rather than running its system")
+# LaTeX line breaks split phrases, so this one is normalised first
+checks += 1
+if HAVE_TEXT and "rather than running its system" not in re.sub(r"\s+", " ", TXT):
+    fails.append("the paper no longer says it did not run the rival system")
 in_text("$1/\\sum_i p_i^2$")
 in_text("121, 200 and 182 of 200")
 for stale in ("8--24", "121 to\n197"):

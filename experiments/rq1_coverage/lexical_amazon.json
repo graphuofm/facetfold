@@ -1,0 +1,100 @@
+{
+  "corpus": "amazon",
+  "n_admitted": 300000,
+  "n_facets": 33,
+  "n_queries": 100,
+  "rrf_k": 60,
+  "note": "coverage under a dense encoder, BM25, and their reciprocal-rank fusion, against the same uniform-retrieval reference. gap_pp is the concentration cost in percentage points.",
+  "uniform_reference": {
+    "10": 0.26243071055401584,
+    "100": 0.9163863438490351,
+    "1000": 0.997153346379643,
+    "10000": 0.9999999999986418
+  },
+  "results": [
+    {
+      "k": 10,
+      "retriever": "bm25",
+      "coverage": 0.1390909090909091,
+      "uniform_reference": 0.26243071055401584,
+      "gap_pp": 12.333980146310674
+    },
+    {
+      "k": 10,
+      "retriever": "dense",
+      "coverage": 0.09030303030303032,
+      "uniform_reference": 0.26243071055401584,
+      "gap_pp": 17.21276802509855
+    },
+    {
+      "k": 10,
+      "retriever": "hybrid",
+      "coverage": 0.0996969696969697,
+      "uniform_reference": 0.26243071055401584,
+      "gap_pp": 16.273374085704614
+    },
+    {
+      "k": 100,
+      "retriever": "bm25",
+      "coverage": 0.5909090909090909,
+      "uniform_reference": 0.9163863438490351,
+      "gap_pp": 32.54772529399441
+    },
+    {
+      "k": 100,
+      "retriever": "dense",
+      "coverage": 0.3315151515151515,
+      "uniform_reference": 0.9163863438490351,
+      "gap_pp": 58.48711923338836
+    },
+    {
+      "k": 100,
+      "retriever": "hybrid",
+      "coverage": 0.4663636363636363,
+      "uniform_reference": 0.9163863438490351,
+      "gap_pp": 45.00227074853987
+    },
+    {
+      "k": 1000,
+      "retriever": "bm25",
+      "coverage": 0.9606060606060606,
+      "uniform_reference": 0.997153346379643,
+      "gap_pp": 3.654728577358246
+    },
+    {
+      "k": 1000,
+      "retriever": "dense",
+      "coverage": 0.723030303030303,
+      "uniform_reference": 0.997153346379643,
+      "gap_pp": 27.412304334934
+    },
+    {
+      "k": 1000,
+      "retriever": "hybrid",
+      "coverage": 0.8993939393939394,
+      "uniform_reference": 0.997153346379643,
+      "gap_pp": 9.775940698570363
+    },
+    {
+      "k": 10000,
+      "retriever": "bm25",
+      "coverage": 1.0,
+      "uniform_reference": 0.9999999999986418,
+      "gap_pp": -1.3582468483264165e-10
+    },
+    {
+      "k": 10000,
+      "retriever": "dense",
+      "coverage": 0.9924242424242425,
+      "uniform_reference": 0.9999999999986418,
+      "gap_pp": 0.7575757574399211
+    },
+    {
+      "k": 10000,
+      "retriever": "hybrid",
+      "coverage": 1.0,
+      "uniform_reference": 0.9999999999986418,
+      "gap_pp": -1.3582468483264165e-10
+    }
+  ]
+}
